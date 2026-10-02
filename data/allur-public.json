@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "title": "Открытые источники Allur",
+  "accessedDate": "2026-10-03",
+  "accessedTimezone": "Asia/Oral",
+  "status": "official_website_access_blocked",
+  "sourceType": "public_context_not_telemetry",
+  "summary": "Официальные сайты недоступны из текущей среды. Проверен ранее сохранённый официальный текст кейса; мощности, годовой выпуск, бренды и логотип с сайтов не подтверждены.",
+  "liveTelemetryConnected": false,
+  "modelTrainingUse": "none",
+  "sources": [
+    {
+      "id": "hackathon-case-2-ru",
+      "title": "Кейс 2: Цифровой двойник автомобильного завода",
+      "publisher": "Организаторы Qostanai Industry Hackathon; организатор кейса — АО «Группа компаний АЛЛЮР»",
+      "url": "https://drive.google.com/file/d/1VQM_DD7e4ecX8FRukZEB35kOjtetoHQB/view",
+      "kind": "official_hackathon_case",
+      "availability": "verified_local_text_snapshot",
+      "publishedAt": null,
+      "publicationDateNote": "Дата публикации не указана в извлечённом тексте. modifiedTime не считается датой публикации.",
+      "modifiedTime": "2026-10-02T07:55:24.859Z",
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral",
+      "accessNote": "В этом обновлении прочитан ранее сохранённый текстовый снимок. PDF заново не загружался.",
+      "snapshotPath": "docs/compliance/sources/case-ru.txt",
+      "snapshotSha256": "f0a8155ec9e85e1bc87bf17b5767b769cd7cfdce092563a898133df4266875c5"
+    }
+  ],
+  "facts": [
+    {
+      "id": "case-organizer",
+      "category": "case_context",
+      "label": "Организатор кейса",
+      "value": "АО «Группа компаний АЛЛЮР»",
+      "quote": "Организатор кейса: АО «Группа компаний АЛЛЮР»",
+      "period": "Хакатон 2026",
+      "sourceId": "hackathon-case-2-ru",
+      "sourceUrl": "https://drive.google.com/file/d/1VQM_DD7e4ecX8FRukZEB35kOjtetoHQB/view",
+      "publishedAt": null,
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral"
+    },
+    {
+      "id": "case-number",
+      "category": "case_context",
+      "label": "Кейс",
+      "value": "2 — Цифровой двойник автомобильного завода",
+      "quote": "КЕЙС 2\n«Цифровой двойник автомобильного завода»",
+      "period": "Хакатон 2026",
+      "sourceId": "hackathon-case-2-ru",
+      "sourceUrl": "https://drive.google.com/file/d/1VQM_DD7e4ecX8FRukZEB35kOjtetoHQB/view",
+      "publishedAt": null,
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral"
+    },
+    {
+      "id": "case-production-processes",
+      "category": "case_context",
+      "label": "Процессы, названные в кейсе",
+      "value": [
+        "Поставка комплектующих",
+        "Работа оборудования",
+        "Производственные линии",
+        "Контроль качества",
+        "Логистика"
+      ],
+      "quote": "Автомобильное производство включает множество взаимосвязанных \nпроцессов: поставку комплектующих, работу оборудования, \nпроизводственные линии, контроль качества и логистику.",
+      "period": "Описание задачи хакатона 2026",
+      "sourceId": "hackathon-case-2-ru",
+      "sourceUrl": "https://drive.google.com/file/d/1VQM_DD7e4ecX8FRukZEB35kOjtetoHQB/view",
+      "publishedAt": null,
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral",
+      "limitation": "Это описание задачи, а не подтверждённая схема или перечень оборудования конкретного завода."
+    },
+    {
+      "id": "demo-day",
+      "category": "event_context",
+      "label": "Demo Day",
+      "value": "2026-10-16",
+      "quote": "Demo Day: 16 октября 2026 года\n(город Костанай, проспект Абая, 28/1)",
+      "period": "2026-10-16",
+      "sourceId": "hackathon-case-2-ru",
+      "sourceUrl": "https://drive.google.com/file/d/1VQM_DD7e4ecX8FRukZEB35kOjtetoHQB/view",
+      "publishedAt": null,
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral",
+      "limitation": "Адрес относится к Demo Day. Это не подтверждение адреса завода."
+    }
+  ],
+  "websiteAttempts": [
+    {
+      "url": "https://allur.kz/",
+      "status": "blocked_by_network_proxy",
+      "error": "Tunnel connection failed: 403 Forbidden",
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral",
+      "officialDomainVerified": false
+    },
+    {
+      "url": "https://allur.kz/ru",
+      "status": "blocked_by_network_proxy",
+      "error": "Tunnel connection failed: 403 Forbidden",
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral",
+      "officialDomainVerified": false
+    },
+    {
+      "url": "https://allur.kz/ru/about",
+      "status": "blocked_by_network_proxy",
+      "error": "Tunnel connection failed: 403 Forbidden",
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral",
+      "officialDomainVerified": false
+    },
+    {
+      "url": "https://allur.kz/ru/production",
+      "status": "blocked_by_network_proxy",
+      "error": "Tunnel connection failed: 403 Forbidden",
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral",
+      "officialDomainVerified": false
+    },
+    {
+      "url": "https://allur.kz/robots.txt",
+      "status": "blocked_by_network_proxy",
+      "error": "Tunnel connection failed: 403 Forbidden",
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral",
+      "officialDomainVerified": false
+    },
+    {
+      "url": "https://www.allur.kz/",
+      "status": "blocked_by_network_proxy",
+      "error": "Tunnel connection failed: 403 Forbidden",
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral",
+      "officialDomainVerified": false
+    },
+    {
+      "url": "https://allurauto.kz/",
+      "status": "blocked_by_network_proxy",
+      "error": "Tunnel connection failed: 403 Forbidden",
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral",
+      "officialDomainVerified": false
+    },
+    {
+      "url": "https://allurproduction.kz/",
+      "status": "blocked_by_network_proxy",
+      "error": "Tunnel connection failed: 403 Forbidden",
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral",
+      "officialDomainVerified": false
+    },
+    {
+      "url": "https://saryarkaavtoprom.kz/",
+      "status": "blocked_by_network_proxy",
+      "error": "Tunnel connection failed: 403 Forbidden",
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral",
+      "officialDomainVerified": false
+    },
+    {
+      "url": "https://www.allurauto.kz/",
+      "status": "blocked_by_network_proxy",
+      "error": "Tunnel connection failed: 403 Forbidden",
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral",
+      "officialDomainVerified": false
+    },
+    {
+      "url": "https://akorda.kz/",
+      "status": "blocked_by_network_proxy",
+      "error": "Tunnel connection failed: 403 Forbidden",
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral",
+      "officialDomainVerified": false
+    },
+    {
+      "url": "https://primeminister.kz/",
+      "status": "blocked_by_network_proxy",
+      "error": "Tunnel connection failed: 403 Forbidden",
+      "accessedDate": "2026-10-03",
+      "accessedTimezone": "Asia/Oral",
+      "officialDomainVerified": false
+    }
+  ],
+  "businessMetrics": {
+    "annualProduction": null,
+    "annualCapacity": null,
+    "employees": null,
+    "brands": [],
+    "plantAddress": null
+  },
+  "missingEvidence": [
+    "Годовой выпуск с указанием календарного периода",
+    "Производственная мощность с датой источника",
+    "Перечень производимых брендов с периодом",
+    "Адрес производственной площадки",
+    "Официальный логотип с прямым URL ресурса",
+    "Проверенная палитра официального сайта",
+    "Линейная телеметрия, простои и вмешательства"
+  ],
+  "brand": {
+    "officialLogo": null,
+    "officialColors": [],
+    "status": "not_verified",
+    "note": "Цвета и текстовое название в интерфейсе — дизайн прототипа, пока не проверен официальный брендовый источник."
+  },
+  "limitations": [
+    "Маркетинговые или годовые показатели нельзя считать текущей телеметрией.",
+    "Открытый текст кейса не содержит данных для обучения модели простоев Allur.",
+    "Четыре участка, оборудование и все текущие KPI в симуляторе остаются синтетическими.",
+    "Недоступность сайта в этой среде не означает, что сайт недоступен пользователям.",
+    "Дата публикации кейса не указана; дата изменения файла сохранена отдельно."
+  ]
+}

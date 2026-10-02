@@ -1,8 +1,8 @@
 /* Browser + Node module. All initial production data is synthetic. */
 (function (root, factory) {
   const api = factory();
+  root.PlantEngine = api;
   if (typeof module === 'object' && module.exports) module.exports = api;
-  else root.PlantEngine = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
   const ZONES = {
@@ -79,8 +79,15 @@
     state.actions = state.actions.slice(0, 100);
   }
   function refresh(state) {
+    // Imported equipment stops are observations, not supply alarms that a simulation may clear.
+    if (state.source === 'imported') state.lines.forEach(line => {
+      if (line.importedEquipmentStop) { line.status = 'stopped'; line.throughput = 0; }
+    });
     const assembly = state.lines.find(l => l.id === 'assembly');
-    if (assembly.buffer <= 0 && assembly.replenishmentPerHour < assembly.demandPerHour) {
+    if (state.source === 'imported' && assembly.importedEquipmentStop) {
+      incident(state, 'stop', 'assembly', 'critical', 'Сборочная линия остановлена',
+        'В снимке зафиксирована остановка оборудования. Пополнение деталей не подтверждает его восстановление.');
+    } else if (assembly.buffer <= 0 && assembly.replenishmentPerHour < assembly.demandPerHour) {
       assembly.status = 'stopped'; assembly.throughput = 0;
       incident(state, 'stop', 'assembly', 'critical', 'Сборочная линия остановлена', 'Буфер комплектующих исчерпан. Требуется поставка деталей.');
     } else {
@@ -96,8 +103,9 @@
     delta = Math.min(delta, 720 - state.elapsedMinutes);
     if (delta <= 0) { state.running = false; return state; }
     const assembly = state.lines.find(l => l.id === 'assembly');
-    const drain = assembly.demandPerHour - assembly.replenishmentPerHour;
-    const availableMinutes = drain > 0 ? Math.min(delta, assembly.buffer / drain * 60) : delta;
+    const equipmentStopped = state.source === 'imported' && assembly.importedEquipmentStop;
+    const drain = (equipmentStopped ? 0 : assembly.demandPerHour) - assembly.replenishmentPerHour;
+    const availableMinutes = equipmentStopped ? 0 : drain > 0 ? Math.min(delta, assembly.buffer / drain * 60) : delta;
     assembly.buffer = clamp(assembly.buffer - drain * delta / 60, 0, 150);
     // Repeated fractional steps can leave ~1e-15 kits at an exact depletion boundary.
     if (drain > 0 && assembly.buffer < 1e-9) assembly.buffer = 0;
@@ -106,11 +114,12 @@
       const multiplier = line.id === 'logistics' && state.scenario === 'shortage' ? 0.38
         : line.id === 'paint' && state.scenario === 'quality' ? 0.75 : [0.92, 0.86, 0.91, 0.92][i];
       const rate = line.capacity * multiplier * (1 + 0.025 * Math.sin(state.elapsedMinutes / 17 + i));
-      const activeMinutes = line.id === 'assembly' ? availableMinutes : delta;
+      const activeMinutes = state.source === 'imported' && line.importedEquipmentStop ? 0
+        : line.id === 'assembly' ? availableMinutes : delta;
       line.produced += rate * activeMinutes / 60;
       line.defects += rate * activeMinutes / 60 * (line.id === 'paint' && state.scenario === 'quality' ? 0.12 : 0.012);
       line.downtimeMinutes += delta - activeMinutes;
-      line.throughput = line.id === 'assembly' && availableMinutes < delta ? 0 : round(rate);
+      line.throughput = activeMinutes < delta ? 0 : round(rate);
       line.history.push({ minute: state.elapsedMinutes, throughput: line.throughput, buffer: round(line.buffer, 2) });
       line.history = line.history.slice(-150);
     });
@@ -126,10 +135,11 @@
     const logistics = state.lines.find(l => l.id === 'logistics');
     logistics.throughput = round(logistics.capacity * 0.92); logistics.status = 'running';
     if (state.scenario === 'shortage') state.scenario = 'normal';
-    resolveType(state, 'supply'); resolveType(state, 'stop');
+    resolveType(state, 'supply');
+    if (!(state.source === 'imported' && assembly.importedEquipmentStop)) resolveType(state, 'stop');
     recordAction(state, 'replenish', 'Пополнен буфер сборки: +' + amount + ' комплектов; подача восстановлена до 21 комплекта/ч.');
     // Restart trend estimation after the intervention, so obsolete decline does not predict another stop.
-    assembly.history.push({ minute: state.elapsedMinutes, throughput: assembly.capacity * 0.91, buffer: round(assembly.buffer,2), intervention: true });
+    assembly.history.push({ minute: state.elapsedMinutes, throughput: state.source === 'imported' && assembly.importedEquipmentStop ? 0 : assembly.capacity * 0.91, buffer: round(assembly.buffer,2), intervention: true });
     refresh(state);
     return state;
   }
@@ -141,10 +151,12 @@
     return true;
   }
   function repairQuality(state) {
-    state.scenario = 'normal';
+    const assembly = state.lines.find(l => l.id === 'assembly');
+    state.scenario = assembly.replenishmentPerHour < assembly.demandPerHour ? 'shortage' : 'normal';
     state.lines.find(l => l.id === 'paint').status = 'running';
     resolveType(state, 'quality');
     recordAction(state, 'quality', 'Параметры окраски скорректированы. Новые операции возвращаются к нормальной доле дефектов.');
+    if (state.source === 'imported') refresh(state);
     return state;
   }
   function trend(history, key) {
@@ -209,7 +221,8 @@
     const numeric = ['capacity','throughput','produced','defects','downtimeMinutes','buffer','demandPerHour','replenishmentPerHour'];
     const bounds = { capacity: 500, throughput: 500, produced: 100000, defects: 100000, downtimeMinutes: input.elapsedMinutes, buffer: 150, demandPerHour: 500, replenishmentPerHour: 500 };
     input.lines.forEach(row=> {
-      if (!ZONES[row.id] || seen.has(row.id)) throw new Error('Идентификаторы линий: body, paint, assembly, logistics — без повторов.');
+      if (!row || typeof row !== 'object' || !Object.hasOwn(ZONES, row.id) || seen.has(row.id))
+        throw new Error('Идентификаторы линий: body, paint, assembly, logistics — без повторов.');
       seen.add(row.id);
       const line = state.lines.find(l=>l.id===row.id);
       numeric.forEach(key=> {
@@ -221,6 +234,8 @@
       if (!['running','warning','stopped'].includes(row.status)) throw new Error('Некорректный статус линии ' + row.id + '.');
       if (row.status === 'stopped' && row.throughput > 0) throw new Error('У остановленной линии производительность должна быть нулевой.');
       line.status = row.status;
+      line.importedEquipmentStop = row.status === 'stopped' &&
+        !(row.id === 'assembly' && line.buffer <= 0 && line.replenishmentPerHour < line.demandPerHour);
       line.history = [{ minute: input.elapsedMinutes, throughput: line.throughput, buffer: line.buffer }];
     });
     state.elapsedMinutes = input.elapsedMinutes;

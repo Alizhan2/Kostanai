@@ -5,3 +5,7 @@ __pycache__/
 .venv/
 ml/local/
 dist/
+.web-static/
+.env
+.env.*
+!.env.example

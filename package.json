@@ -1,12 +1,12 @@
 {
   "name": "allur-plant-twin",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
-  "description": "Offline production digital twin prototype for Qostanai Industry Hackathon 2026",
+  "description": "React production digital twin prototype with source provenance for Qostanai AI Industry Hackathon 2026",
   "scripts": {
-    "start": "python3 -m http.server 8000 --bind 0.0.0.0",
+    "start": "python3 -m http.server 8000 --bind 0.0.0.0 --directory site",
     "test": "node --test tests/*.test.js",
-    "check": "node --check engine.js && node --check app.js && node --check ml-features.js && node --check ml-runtime.js && node --check aps-runtime.js && node --check docs/aps-demo.js && node --check ml/prepare-telemetry.js && node --check scripts/verify-model-export.js && node --check scenario-analysis.js",
+    "check": "node --check engine.js && node --check scripts/prepare-web.cjs && node --check ml-features.js && node --check ml-runtime.js && node --check aps-runtime.js && node --check docs/aps-demo.js && node --check ml/prepare-telemetry.js && node --check scripts/verify-model-export.js && node --check scenario-analysis.js",
     "verify:models": "node scripts/verify-model-export.js",
     "compare": "node scripts/compare-scenarios.js",
     "ml:data": "node ml/generate-data.js",
@@ -16,6 +16,18 @@
     "ml:aps:data": "python3 ml/download-aps.py",
     "ml:aps:train": "python3 ml/train-aps.py",
     "ml:aps:report": "python3 ml/plot-aps.py",
-    "release": "python3 scripts/build-release.py"
+    "release": "python3 scripts/build-release.py",
+    "dev": "npm run prepare:web && vite --host 0.0.0.0 --port 5173",
+    "build": "npm run prepare:web && vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "prepare:web": "node scripts/prepare-web.cjs"
+  },
+  "dependencies": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "6.1.1",
+    "vite": "8.3.2"
   }
 }

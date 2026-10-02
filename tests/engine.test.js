@@ -128,3 +128,68 @@ test('quality intervention changes future defects without rewriting production h
   E.tick(state,30);
   assert.ok(paint.defects>defects && paint.defects-defects<1);
 });
+
+test('imported equipment stops remain observations and accumulate downtime without output', () => {
+  const snapshot=E.exportSnapshot(E.createState('shortage'));
+  for (const id of ['body', 'paint', 'assembly', 'logistics']) {
+    const line=snapshot.lines.find(l=>l.id===id);
+    line.status='stopped'; line.throughput=0;
+  }
+  const state=E.validateImport(snapshot);
+  const initial=state.lines.map(line=>({produced:line.produced,defects:line.defects,downtime:line.downtimeMinutes}));
+  E.tick(state,5);
+  state.lines.forEach((line,i)=>{
+    assert.equal(line.status,'stopped');
+    assert.equal(line.throughput,0);
+    assert.equal(line.produced,initial[i].produced);
+    assert.equal(line.defects,initial[i].defects);
+    assert.equal(line.downtimeMinutes,initial[i].downtime+5);
+  });
+  assert.ok(Math.abs(state.lines.find(l=>l.id==='assembly').buffer-(12+4*5/60))<1e-9);
+  const stop=state.incidents.find(item=>item.type==='stop'&&item.status==='open');
+  E.replenish(state);
+  assert.equal(state.lines.find(l=>l.id==='assembly').history.at(-1).throughput,0);
+  E.repairQuality(state);
+  assert.equal(state.lines.find(l=>l.id==='assembly').status,'stopped');
+  assert.equal(state.lines.find(l=>l.id==='paint').status,'stopped');
+  assert.equal(stop.status,'open');
+  assert.equal(state.incidents.filter(item=>item.type==='stop'&&item.status==='open').length,1);
+  const roundTrip=E.validateImport(E.exportSnapshot(state));
+  assert.equal(roundTrip.lines.find(l=>l.id==='assembly').status,'stopped');
+});
+
+test('an imported buffer stop can resume after replenishment, unlike an equipment stop', () => {
+  const original=E.createState('shortage'); E.tick(original,60);
+  const state=E.validateImport(E.exportSnapshot(original));
+  const line=state.lines.find(l=>l.id==='assembly');
+  assert.equal(line.status,'stopped');
+  assert.equal(line.importedEquipmentStop,false);
+  E.replenish(state);
+  E.tick(state,5);
+  assert.equal(line.status,'running');
+  assert.ok(line.produced>39);
+  assert.equal(state.incidents.filter(item=>item.type==='stop'&&item.status==='open').length,0);
+});
+
+test('quality repair preserves an independent supply shortage and its incident', () => {
+  const snapshot=E.exportSnapshot(E.createState('shortage'));
+  snapshot.lines.find(line=>line.id==='paint').status='warning';
+  const state=E.validateImport(snapshot);
+  assert.ok(state.incidents.some(item=>item.type==='supply'&&item.status==='open'));
+  assert.ok(state.incidents.some(item=>item.type==='quality'&&item.status==='open'));
+  E.repairQuality(state);
+  assert.equal(state.scenario,'shortage');
+  assert.equal(state.lines.find(line=>line.id==='assembly').replenishmentPerHour,4);
+  assert.ok(state.incidents.some(item=>item.type==='supply'&&item.status==='open'));
+  assert.ok(!state.incidents.some(item=>item.type==='quality'&&item.status==='open'));
+  E.tick(state,5);
+  assert.ok(state.lines.find(line=>line.id==='logistics').throughput<15);
+});
+
+test('malformed and inherited zone identifiers are rejected by snapshot validation', () => {
+  for (const row of [null, undefined, 1, {id:'__proto__'}, {id:'constructor'}, {id:'toString'}]) {
+    const snapshot=E.exportSnapshot(E.createState());
+    snapshot.lines[0]=row;
+    assert.throws(()=>E.validateImport(snapshot),/Идентификаторы линий/);
+  }
+});

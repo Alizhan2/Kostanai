@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "checks": [
+    "Production React bundle renders, initial horizon 45 minutes",
+    "Buffer depletion after 45 minutes; next step adds 5 downtime minutes",
+    "Replenishment restores supply and assembly",
+    "Equipment modal opens and closes with Escape",
+    "Quality scenario and corrective action work",
+    "What-if slider updates comparison without mutating current shift; selection survives navigation",
+    "CSV, TXT, snapshot JSON and comparison JSON downloads contain data",
+    "Separate Scania diagnostic page accessible in static build",
+    "Malformed import rejected without changing shift",
+    "Imported equipment stops persist through stepping and replenishment; synthetic ML disabled",
+    "Snapshot reload retains provenance and pauses simulation",
+    "Source catalog separates case facts, unknown company metrics and simulation",
+    "All seven pages fit 390, 768 and 1440 pixel viewports without page overflow",
+    "Automatic time advances; open equipment dialog and settings pause timer",
+    "No browser runtime errors"
+  ],
+  "errors": []
+}

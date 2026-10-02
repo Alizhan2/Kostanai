@@ -1,7 +1,8 @@
 /* Independent synthetic scenarios for the operator's what-if comparison. */
 (function (root, factory) {
-  if (typeof module === 'object' && module.exports) module.exports = factory(require('./engine.js'));
-  else root.PlantScenarioAnalysis = factory(root.PlantEngine);
+  const api = factory(typeof module === 'object' && module.exports ? require('./engine.js') : root.PlantEngine);
+  root.PlantScenarioAnalysis = api;
+  if (typeof module === 'object' && module.exports) module.exports = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (E) {
   'use strict';
   const HORIZON = 120;

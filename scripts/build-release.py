@@ -57,13 +57,13 @@ email = f"""# Черновик письма — Qostanai AI Industry Hackathon 2
 if team.get("demoUrl", "").strip():
     email += f"Демонстрация: {team['demoUrl'].strip()}\n"
 email += "\nПроект демонстрирует производственные потоки, предупреждение остановки сборки и действия оператора. Заводская симуляция и модель буфера используют синтетические данные. Отдельная диагностическая модель обучена на открытых эксплуатационных данных Scania APS; её результаты не относятся к оборудованию Allur.\n\nС уважением,\n" + field("captain", "[ФИО капитана]") + "\n"
-email += "\n---\nСтатус: черновик, письмо не отправлено. Перед отправкой заполните авторов и опубликуйте код.\n"
+email += "\n---\nСтатус: черновик, письмо не отправлено. Перед отправкой заполните авторов и проверьте ссылки на код и PDF.\n"
 (ROOT / "docs/submission/submission-email.md").write_text(email, encoding="utf-8")
 dist = ROOT / "dist"
 dist.mkdir(exist_ok=True)
 shutil.copyfile(presentation, dist / "Allur-Plant-Twin-presentation.pdf")
 shutil.copyfile(ROOT / "docs/submission/submission-email.md", dist / "submission-email.md")
-excluded = {".git", ".venv", "node_modules", "__pycache__", "dist"}
+excluded = {".git", ".venv", "node_modules", "__pycache__", "dist", ".web-static"}
 files = []
 archive = dist / "Allur-Plant-Twin.zip"
 with ZipFile(archive, "w", ZIP_DEFLATED) as bundle:
