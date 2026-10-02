@@ -1,0 +1,37 @@
+{
+  "repositoryUrl": "https://github.com/Alizhan2/Kostanai",
+  "branch": "main",
+  "verifiedSourceCommit": "3cf3e2c1e316eaf79564163e108acea32ec25c32",
+  "checkedDate": "2026-10-03",
+  "dateTimeZone": "Asia/Oral",
+  "publicAnonymousReadsPassed": true,
+  "checks": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "9fd908c2f334683ff0621d61c8be70424073aec2e76b50ebbdcac87626e8a26d"
+    },
+    {
+      "path": "package.json",
+      "status": 200,
+      "sha256": "e335b74f14b5a2befb1d55d09f67a67fe05fb88bd57012efc2070bbc8e587889"
+    },
+    {
+      "path": "docs/presentation.pdf",
+      "status": 200,
+      "sha256": "ba31680332e0d2053c2d4d385c17939f5efdd6dbee7e900810ece3fbbbca4fa5"
+    },
+    {
+      "path": "docs/technical-description.md",
+      "status": 200,
+      "sha256": "9e0f941232bbd3a6590e8763bb868475fcbacf0c45722b3f5dd377ccf072e3c8"
+    }
+  ],
+  "readmeCheckedSeparately": true,
+  "limitations": [
+    "Presentation still contains author placeholders",
+    "Team identity and registration not confirmed",
+    "Public repository is not a deployed application",
+    "Submission has not been sent"
+  ]
+}
