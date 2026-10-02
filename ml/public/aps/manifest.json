@@ -1,0 +1,45 @@
+{
+  "dataset": "APS Failure at Scania Trucks",
+  "creator": "Scania CV AB",
+  "donors": [
+    "Tony Lindgren",
+    "Jonas Biteus"
+  ],
+  "released": "2016-09",
+  "canonicalUrl": "https://archive.ics.uci.edu/dataset/421/aps+failure+at+scania+trucks",
+  "mirrorRepository": "DeepDive-UG/Scania-failure-model",
+  "mirrorCommit": "cf7d236b2c3a2196931f0acba0ab858ee9071fa2",
+  "licenseDeclaredInOriginalFiles": "GPL-3.0-or-later",
+  "source": "public_observed_scania_aps",
+  "files": {
+    "aps_failure_training_set.csv": {
+      "url": "https://raw.githubusercontent.com/DeepDive-UG/Scania-failure-model/cf7d236b2c3a2196931f0acba0ab858ee9071fa2/data/raw/aps_failure_training_set.csv",
+      "bytes": 44669194,
+      "gitBlobSha": "2eeba53f615dc49cce61cd2ec4edc85bf7334715",
+      "sha256": "bb484302e3a3a1c8ef5e1f0129c4dc7cbd58f350867f95b575461ca21ab6b9da"
+    },
+    "aps_failure_test_set.csv": {
+      "url": "https://raw.githubusercontent.com/DeepDive-UG/Scania-failure-model/cf7d236b2c3a2196931f0acba0ab858ee9071fa2/data/raw/aps_failure_test_set.csv",
+      "bytes": 11943558,
+      "gitBlobSha": "0836571d6f0a34dab92f129fdae269dc5703f950",
+      "sha256": "2cdf6f7661c7b4c63333c93cdec36a3a82350176b604a2312cf82799fb2712f3"
+    },
+    "aps_failure_description.txt": {
+      "url": "https://raw.githubusercontent.com/DeepDive-UG/Scania-failure-model/cf7d236b2c3a2196931f0acba0ab858ee9071fa2/data/raw/aps_failure_description.txt",
+      "bytes": 4874,
+      "gitBlobSha": "0d82cfc41fd96cf260516a7737f0dd8787d263bd",
+      "sha256": "57b1eb3c551a678ffc1c8112e5b34c566dd16457642563f58aeb3ca65beeb820"
+    }
+  },
+  "scope": "Truck APS component fault classification; no factory buffer or future-horizon labels.",
+  "negativeClass": "Faults in components not related to APS, not healthy trucks.",
+  "limitations": [
+    "Anonymized operational counters and histogram bins.",
+    "No timestamp or truck identifier for chronological/grouped evaluation.",
+    "Git blob hashes verify the pinned mirror, not direct equality to today's UCI download."
+  ],
+  "licenseCopy": {
+    "url": "https://raw.githubusercontent.com/gcc-mirror/gcc/master/COPYING3",
+    "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+  }
+}

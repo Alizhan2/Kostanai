@@ -47,7 +47,7 @@ email = f"""# Черновик письма — Qostanai AI Industry Hackathon 2
 """
 if team.get("demoUrl", "").strip():
     email += f"Демонстрация: {team['demoUrl'].strip()}\n"
-email += "\nПроект демонстрирует производственные потоки, предупреждение остановки сборки и действия оператора. Данные и оценка ML-модели в текущем прототипе синтетические.\n\nС уважением,\n" + field("captain", "[ФИО капитана]") + "\n"
+email += "\nПроект демонстрирует производственные потоки, предупреждение остановки сборки и действия оператора. Заводская симуляция и модель буфера используют синтетические данные. Отдельная диагностическая модель обучена на открытых эксплуатационных данных Scania APS; её результаты не относятся к оборудованию Allur.\n\nС уважением,\n" + field("captain", "[ФИО капитана]") + "\n"
 email += "\n---\nСтатус: черновик, письмо не отправлено. Перед отправкой заполните авторов и опубликуйте код.\n"
 (ROOT / "docs/submission/submission-email.md").write_text(email, encoding="utf-8")
 dist = ROOT / "dist"
@@ -77,8 +77,9 @@ status = {"project": "Allur Plant Twin", "case": 2,
           "repositoryPublishedByTeam": team["repositoryPublished"],
           "repositoryAvailabilityChecked": False,
           "softwareTestsRunForThisUpdate": False,
-          "observedTelemetryTrainingRun": False,
-          "modelEvaluationSource": "synthetic",
+          "factoryTelemetryTrainingRun": False,
+          "publicObservedBenchmarkTrainingRun": (ROOT / "ml/results/aps/report.json").exists(),
+          "modelEvaluationSources": {"buffer": "synthetic", "APS_diagnosis": "public_observed_scania_aps"},
           "archiveSha256": hashlib.sha256(archive.read_bytes()).hexdigest(),
           "presentationSha256": hashlib.sha256(presentation.read_bytes()).hexdigest(),
           "files": files}

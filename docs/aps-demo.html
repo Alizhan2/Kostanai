@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Scania APS — диагностика на открытых данных</title>
+  <link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="aps-demo.css">
+  <script src="../ml-features.js" defer></script><script src="../ml-runtime.js" defer></script>
+  <script src="../models/aps-diagnostic.js" defer></script><script src="../aps-runtime.js" defer></script>
+  <script src="../data/aps-examples.js" defer></script><script src="aps-demo.js" defer></script>
+</head>
+<body>
+<main class="aps-page">
+  <a class="back-link" href="../index.html">← Allur Plant Twin</a>
+  <header class="head"><div class="eyebrow">Открытые эксплуатационные данные · Scania</div>
+    <h1>Диагностика пневмосистемы грузовика</h1>
+    <p>Модель различает неисправность APS и неисправность другого компонента по обезличенным измерениям.</p>
+  </header>
+  <section class="card section-card">
+    <h2>Результат на 16 000 отложенных записей</h2>
+    <div class="aps-metrics" id="metrics"></div>
+    <p class="setting-text">Порог выбран по стоимости ошибок из задания Scania: пропуск — 500 условных единиц, лишняя проверка — 10. Поэтому модель предупреждает часто. Здесь нет метки «полностью исправный грузовик» и горизонта будущего отказа.</p>
+  </section>
+  <section class="card section-card">
+    <h2>Проверить запись</h2>
+    <p class="setting-text">Выберите исходную запись или загрузите JSON с теми же 170 признаками. Расчёт выполняется в этом браузере.</p>
+    <div class="report-actions">
+      <label class="aps-select-label" for="example">Запись из датасета <select id="example"></select></label>
+      <label class="file-label">Загрузить JSON<input id="recordFile" type="file" accept=".json,application/json" class="visually-hidden"></label>
+      <button class="control-btn" id="download">Скачать запись</button>
+    </div>
+    <div id="result" class="aps-result" aria-live="polite"></div>
+    <p class="small" id="reference"></p>
+    <details><summary>Измерения выбранной записи</summary><div class="aps-table"><table><thead><tr><th>Признак</th><th>Значение</th></tr></thead><tbody id="features"></tbody></table></div></details>
+    <p class="small">В демонстрации представлены первые четыре записи каждого класса. Метрики выше рассчитаны по всем 16 000 записям, включая записи с малым числом измерений, которые браузер может отклонить.</p>
+  </section>
+  <section class="card section-card setting-text">
+    <h2>Источник и применение</h2>
+    <p>Scania CV AB, сентябрь 2016. 60 000 исходных записей обучения разделены на 48 000 для обучения и 12 000 для калибровки и порога. Исходная выборка оценки содержит 16 000 записей.</p>
+    <p>Данные описывают эксплуатацию грузовиков. Эта модель не оценивает буфер комплектующих, не диагностирует оборудование завода Allur и не предсказывает время поломки. Без идентификаторов грузовиков и времени нельзя подтвердить разделение по отдельным машинам и будущим периодам.</p>
+    <p>Условия в исходных файлах: Copyright (c) 2016 Scania CV AB, GPL-3.0-or-later. Оригиналы, описание и копия лицензии сохранены в проекте.</p>
+    <p><a href="https://archive.ics.uci.edu/dataset/421/aps+failure+at+scania+trucks">Карточка UCI</a> · <a href="../ml/results/aps/report.json">Полный отчёт</a> · <a href="../ml/public/aps/manifest.json">Источники и хеши</a></p>
+  </section>
+</main>
+</body></html>
