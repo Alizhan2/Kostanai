@@ -1,0 +1,58 @@
+{
+  "reviewDate": "2026-10-02",
+  "projectVersion": "0.7.0",
+  "baseCommit": "48329e8",
+  "textSnapshots": "Readable text extracted through Google Drive; these are not original PDF bytes.",
+  "sources": [
+    {
+      "snapshot": "sources/case-ru.txt",
+      "fileId": "1VQM_DD7e4ecX8FRukZEB35kOjtetoHQB",
+      "url": "https://drive.google.com/file/d/1VQM_DD7e4ecX8FRukZEB35kOjtetoHQB/view",
+      "modifiedTime": "2026-10-02T07:55:24.859Z"
+    },
+    {
+      "snapshot": "sources/case-kk.txt",
+      "fileId": "1yE37ag8vtXSpPLx06s25bRig4wWRHncN",
+      "url": "https://drive.google.com/file/d/1yE37ag8vtXSpPLx06s25bRig4wWRHncN/view",
+      "modifiedTime": "2026-10-02T09:59:32.765Z"
+    },
+    {
+      "snapshot": "sources/rules-ru.txt",
+      "fileId": "14FmftU-f_NvKjSGlSL-ZWzKd4eK2xdey",
+      "url": "https://drive.google.com/file/d/14FmftU-f_NvKjSGlSL-ZWzKd4eK2xdey/view",
+      "modifiedTime": "2026-10-02T08:02:23.559Z"
+    },
+    {
+      "snapshot": "sources/rules-kk.txt",
+      "fileId": "1dXDMsyxrGuyQ7PEHvOdeoONed273mxZZ",
+      "url": "https://drive.google.com/file/d/1dXDMsyxrGuyQ7PEHvOdeoONed273mxZZ/view",
+      "modifiedTime": "2026-10-02T08:02:13.864Z"
+    }
+  ],
+  "announcement": {
+    "source": "User-provided organizer announcement in this conversation",
+    "deadline": "2026-10-08 23:59",
+    "timeZoneSpecified": false,
+    "requestedMaterials": [
+      "PDF presentation or link",
+      "repository link"
+    ],
+    "submissionChannel": "letter; recipient not provided"
+  },
+  "repositoryReadback": {
+    "url": "https://github.com/Alizhan2/Kostanai",
+    "visibility": "public",
+    "size": 0,
+    "branches": [],
+    "checkedAtUTC": "2026-10-02 20:15 UTC"
+  },
+  "verificationReadback": {
+    "version": "0.7.0",
+    "sourceFingerprintsMatch": true,
+    "testsPreviouslyPassed": 15,
+    "testsRerunDuringAudit": false,
+    "archiveIntegrityChecked": true,
+    "pdfPages": 9,
+    "pdfAuthorsPlaceholder": true
+  }
+}
