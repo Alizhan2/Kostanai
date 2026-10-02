@@ -1,33 +1,47 @@
 {
   "repositoryUrl": "https://github.com/Alizhan2/Kostanai",
   "branch": "main",
-  "verifiedSourceCommit": "3cf3e2c1e316eaf79564163e108acea32ec25c32",
-  "checkedDate": "2026-10-03",
-  "dateTimeZone": "Asia/Oral",
+  "version": "0.8.0",
+  "verifiedSourceCommit": "5c641c1f66f737d20d09e63f52480b35fadda62f",
+  "checkedAtUTC": "2026-10-02T20:54:17.450803+00:00",
   "publicAnonymousReadsPassed": true,
   "checks": [
     {
-      "path": "index.html",
+      "path": "README.md",
       "status": 200,
-      "sha256": "9fd908c2f334683ff0621d61c8be70424073aec2e76b50ebbdcac87626e8a26d"
+      "sha256": "7869d1728af70615fd8a012d8056682d49374e0eeb74f3510473ce4a45668b6e"
     },
     {
       "path": "package.json",
       "status": 200,
-      "sha256": "e335b74f14b5a2befb1d55d09f67a67fe05fb88bd57012efc2070bbc8e587889"
+      "sha256": "4f29321c38fd281565c589096b737212e17a3551b20ba7291a5d603612efa584"
+    },
+    {
+      "path": "src/App.jsx",
+      "status": 200,
+      "sha256": "081faa170de2c4548b51ed057c7b85eda5204a60bdbf6bb202a22555c939fe82"
+    },
+    {
+      "path": "data/allur-public.json",
+      "status": 200,
+      "sha256": "0224355dae36364d04cec5531e1440098626015fe79d334f3fb212cf096cfa58"
+    },
+    {
+      "path": "site/index.html",
+      "status": 200,
+      "sha256": "bac6edf97c5a05231dbed321e5aae114b72f62f514fe9797fbc83d18d1cabf61"
     },
     {
       "path": "docs/presentation.pdf",
       "status": 200,
-      "sha256": "ba31680332e0d2053c2d4d385c17939f5efdd6dbee7e900810ece3fbbbca4fa5"
+      "sha256": "0eece265be60a1e7412d2ed982a90f5edc7c9e75c657b3fc0c078ca7968f38f5"
     },
     {
       "path": "docs/technical-description.md",
       "status": 200,
-      "sha256": "9e0f941232bbd3a6590e8763bb868475fcbacf0c45722b3f5dd377ccf072e3c8"
+      "sha256": "526f9272ff55a15953f6d24565e13070e89cb3a08cfbced15a0d16deb72e0b7b"
     }
   ],
-  "readmeCheckedSeparately": true,
   "limitations": [
     "Presentation still contains author placeholders",
     "Team identity and registration not confirmed",
