@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "source": "synthetic",
+  "seed": 20261002,
+  "episodes": 600,
+  "stepMinutes": 5,
+  "horizonMinutes": 60,
+  "durationMinutes": 480,
+  "observationCadencesMinutes": [
+    5,
+    10,
+    15
+  ],
+  "rows": 22041,
+  "telemetryRows": 58200,
+  "eligibleEpisodes": 595,
+  "features": [
+    "buffer",
+    "demand_per_hour",
+    "supply_per_hour",
+    "net_deficit_per_hour",
+    "coverage_minutes",
+    "buffer_trend_per_hour",
+    "flow_std_per_hour",
+    "mean_flow_per_hour"
+  ],
+  "target": "stop_within_60m",
+  "targetMeaning": "Buffer exhaustion in the next 60 minutes without operator intervention.",
+  "labelUsesFuture": true,
+  "featuresUseFuture": false,
+  "regimeIsFeature": false,
+  "positiveRows": 2648,
+  "sha256": "1f3dd44feaa9c477425484b4cf5ae01cfd3fbcc2e65f8d82f1a8201901def7e2",
+  "generator": "ml/generate-data.js",
+  "engine": "engine.js",
+  "featureExtractor": "ml-features.js",
+  "assumptions": [
+    "Supply changes stochastically every five minutes.",
+    "Demand is constant within each synthetic episode.",
+    "No manual replenishment in forecast horizon.",
+    "Not Allur telemetry or equipment failure labels."
+  ]
+}

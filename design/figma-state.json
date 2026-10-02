@@ -1,0 +1,22 @@
+{
+  "fileKey":"uBCseosrNd3f8jDkTayoNc",
+  "url":"https://www.figma.com/design/uBCseosrNd3f8jDkTayoNc",
+  "planKey":"team::1566443821281325369",
+  "scope":"five desktop screens, mobile overview, required reusable components",
+  "pageId":"0:1",
+  "stage":"complete",
+  "discovery":{
+    "codeConnect":"none in repository",
+    "existingScreens":"empty new file",
+    "libraries":"Simple Design System inspected",
+    "components":"generic SDS components differ from source palette and typography; source-specific families required",
+    "variables":"source palette; compatible spacing can be reused",
+    "styles":"Arimo styles matching source font metrics; library styles use a different font hierarchy",
+    "images":"no content images",
+    "font":"Arimo Regular/Bold; substitute for unavailable Arial"
+  },
+  "entities":{"screens":[{"id":"3:78","name":"Allur / Overview","width":1440,"height":1928,"textCount":118,"instanceCount":50,"fonts":["Arimo"],"imageNodeIds":[],"navigationCount":4},{"id":"3:79","name":"Allur / Lines","width":1440,"height":1355,"textCount":86,"instanceCount":37,"fonts":["Arimo"],"imageNodeIds":[],"navigationCount":4},{"id":"3:80","name":"Allur / Incidents","width":1440,"height":979,"textCount":54,"instanceCount":30,"fonts":["Arimo"],"imageNodeIds":[],"navigationCount":4},{"id":"3:81","name":"Allur / Quality","width":1440,"height":1159,"textCount":46,"instanceCount":28,"fonts":["Arimo"],"imageNodeIds":[],"navigationCount":4},{"id":"3:82","name":"Allur / Reports","width":1440,"height":1369,"textCount":73,"instanceCount":36,"fonts":["Arimo"],"imageNodeIds":[],"navigationCount":4},{"id":"3:83","name":"Allur / Mobile","width":390,"height":2018,"textCount":63,"instanceCount":27,"fonts":["Arimo"],"imageNodeIds":[],"navigationCount":0}],"components":"figma-components.json","foundations":"figma-foundations.json"},
+  "validation":{"editableLayers":true,"imageFills":0,"prototypeLinks":20,"componentSets":10,"variables":56,"textStyles":9,"visualChecks":["Overview","Lines","Incidents","Quality","Reports","Mobile"]},
+  "finalChanges":{"removedNodeIds":["4:220","4:221","4:226","4:227"],"qualityCards":"numeric percentages and defect counts"},
+  "pendingValidations":[]
+}

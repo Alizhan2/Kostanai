@@ -1,0 +1,15 @@
+{
+  "source": "synthetic simulation; not measured Allur results",
+  "horizonMinutes": 120,
+  "interventionAfterMinutes": 30,
+  "baseline": {
+    "produced": 14.8,
+    "downtimeMinutes": 75
+  },
+  "intervention": {
+    "produced": 40,
+    "downtimeMinutes": 0
+  },
+  "additionalOutput": 25.3,
+  "avoidedDowntimeMinutes": 75
+}

@@ -1,0 +1,182 @@
+{
+  "createdNodeIds": [
+    "3:78",
+    "3:79",
+    "3:80",
+    "3:81",
+    "3:82",
+    "3:83"
+  ],
+  "mutatedNodeIds": [
+    "0:1"
+  ],
+  "wrappers": {
+    "Overview": "3:78",
+    "Lines": "3:79",
+    "Incidents": "3:80",
+    "Quality": "3:81",
+    "Reports": "3:82",
+    "Mobile": "3:83"
+  },
+  "collections": {
+    "primitives": "VariableCollectionId:3:2",
+    "color": "VariableCollectionId:3:25",
+    "layout": "VariableCollectionId:3:55"
+  },
+  "variables": {
+    "color/bg": "VariableID:3:26",
+    "color/panel": "VariableID:3:27",
+    "color/ink": "VariableID:3:28",
+    "color/muted": "VariableID:3:29",
+    "color/line": "VariableID:3:30",
+    "color/nav": "VariableID:3:31",
+    "color/navActive": "VariableID:3:32",
+    "color/navText": "VariableID:3:33",
+    "color/lime": "VariableID:3:34",
+    "color/success": "VariableID:3:35",
+    "color/warning": "VariableID:3:36",
+    "color/danger": "VariableID:3:37",
+    "color/info": "VariableID:3:38",
+    "color/successSoft": "VariableID:3:39",
+    "color/warningSoft": "VariableID:3:40",
+    "color/dangerSoft": "VariableID:3:41",
+    "color/infoSoft": "VariableID:3:42",
+    "color/successInk": "VariableID:3:43",
+    "color/warningInk": "VariableID:3:44",
+    "color/dangerInk": "VariableID:3:45",
+    "color/map": "VariableID:3:46",
+    "color/risk": "VariableID:3:47",
+    "space/4": "VariableID:3:56",
+    "space/8": "VariableID:3:57",
+    "space/12": "VariableID:3:58",
+    "space/16": "VariableID:3:59",
+    "space/24": "VariableID:3:60",
+    "space/32": "VariableID:3:61",
+    "radius/0": "VariableID:3:62",
+    "radius/8": "VariableID:3:63",
+    "radius/12": "VariableID:3:64",
+    "radius/16": "VariableID:3:65",
+    "radius/999": "VariableID:3:66",
+    "border/1": "VariableID:3:67"
+  },
+  "allVariableIds": [
+    "VariableID:3:3",
+    "VariableID:3:4",
+    "VariableID:3:5",
+    "VariableID:3:6",
+    "VariableID:3:7",
+    "VariableID:3:8",
+    "VariableID:3:9",
+    "VariableID:3:10",
+    "VariableID:3:11",
+    "VariableID:3:12",
+    "VariableID:3:13",
+    "VariableID:3:14",
+    "VariableID:3:15",
+    "VariableID:3:16",
+    "VariableID:3:17",
+    "VariableID:3:18",
+    "VariableID:3:19",
+    "VariableID:3:20",
+    "VariableID:3:21",
+    "VariableID:3:22",
+    "VariableID:3:23",
+    "VariableID:3:24",
+    "VariableID:3:26",
+    "VariableID:3:27",
+    "VariableID:3:28",
+    "VariableID:3:29",
+    "VariableID:3:30",
+    "VariableID:3:31",
+    "VariableID:3:32",
+    "VariableID:3:33",
+    "VariableID:3:34",
+    "VariableID:3:35",
+    "VariableID:3:36",
+    "VariableID:3:37",
+    "VariableID:3:38",
+    "VariableID:3:39",
+    "VariableID:3:40",
+    "VariableID:3:41",
+    "VariableID:3:42",
+    "VariableID:3:43",
+    "VariableID:3:44",
+    "VariableID:3:45",
+    "VariableID:3:46",
+    "VariableID:3:47",
+    "VariableID:3:56",
+    "VariableID:3:57",
+    "VariableID:3:58",
+    "VariableID:3:59",
+    "VariableID:3:60",
+    "VariableID:3:61",
+    "VariableID:3:62",
+    "VariableID:3:63",
+    "VariableID:3:64",
+    "VariableID:3:65",
+    "VariableID:3:66",
+    "VariableID:3:67"
+  ],
+  "styles": {
+    "Heading": "S:e5b90f46af0ff5c80bd09ef5fd5a8d4c8afe7b73,",
+    "HeadingMobile": "S:7027349a38d197032bfa0fd4bbdc951682088ba4,",
+    "Section": "S:a37e59f7fea568310e51fc778a317970b92fd2d7,",
+    "Body": "S:d516b67832deb206fc4e14132fc832095ceaf213,",
+    "Strong": "S:12c897156fefeb4cd396fdb7a2daee249a579b6e,",
+    "Label": "S:621f76ed473c0c47b521ec10fdf1f43b5551dd3b,",
+    "Small": "S:a3b5720fc0c3bd6bab16d2a01a08ebfe2ea41863,",
+    "Metric": "S:bce195fa81c9473aef73d08b37fa9f14c888a0e8,",
+    "MetricMobile": "S:b9305a0e0502a9feb0fec6c06738b5ad316dc600,"
+  },
+  "effect": "S:92270a51452fc456b83dc1597291319d6cc1a5f4,",
+  "font": "Arimo",
+  "counts": {
+    "wrappers": 6,
+    "variables": 56,
+    "textStyles": 9
+  },
+  "importedSpacing": [
+    {
+      "requested": 4,
+      "name": "Space/100",
+      "values": {
+        "9:7": 4
+      }
+    },
+    {
+      "requested": 8,
+      "name": "Space/200",
+      "values": {
+        "9:7": 8
+      }
+    },
+    {
+      "requested": 12,
+      "name": "Space/300",
+      "values": {
+        "9:7": 12
+      }
+    },
+    {
+      "requested": 16,
+      "name": "Space/400",
+      "values": {
+        "9:7": 16
+      }
+    },
+    {
+      "requested": 24,
+      "name": "Space/600",
+      "values": {
+        "9:7": 24
+      }
+    },
+    {
+      "requested": 32,
+      "name": "Space/800",
+      "values": {
+        "9:7": 32
+      }
+    }
+  ]
+}

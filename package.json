@@ -1,0 +1,17 @@
+{
+  "name": "allur-plant-twin",
+  "version": "0.5.0",
+  "private": true,
+  "description": "Offline production digital twin prototype for Qostanai Industry Hackathon 2026",
+  "scripts": {
+    "start": "python3 -m http.server 8000 --bind 0.0.0.0",
+    "test": "node --test tests/engine.test.js",
+    "check": "node --check engine.js && node --check app.js && node --check ml-features.js && node --check ml-runtime.js",
+    "compare": "node scripts/compare-scenarios.js",
+    "ml:data": "node ml/generate-data.js",
+    "ml:train": "node ml/generate-data.js && python3 ml/train.py",
+    "ml:report": "python3 ml/plot-results.py",
+    "ml:prepare": "node ml/prepare-telemetry.js",
+    "release": "python3 scripts/build-release.py"
+  }
+}

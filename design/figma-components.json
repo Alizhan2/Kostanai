@@ -1,0 +1,564 @@
+{
+  "createdNodeIds": [
+    "4:48",
+    "4:49",
+    "4:55",
+    "4:56",
+    "4:60",
+    "4:61",
+    "4:65",
+    "4:66",
+    "4:70",
+    "4:71",
+    "4:74",
+    "4:75",
+    "4:79",
+    "4:80",
+    "4:83",
+    "4:84",
+    "4:89",
+    "4:90",
+    "4:95",
+    "4:96",
+    "4:101",
+    "4:102",
+    "4:107",
+    "4:108",
+    "4:112",
+    "4:88",
+    "4:94",
+    "4:100",
+    "4:106",
+    "4:114",
+    "4:121",
+    "4:123",
+    "4:130",
+    "4:131",
+    "4:113",
+    "4:122",
+    "4:133",
+    "4:135",
+    "4:136",
+    "4:132",
+    "4:134",
+    "4:138",
+    "4:139",
+    "4:141",
+    "4:142",
+    "4:144",
+    "4:145",
+    "4:146",
+    "4:137",
+    "4:140",
+    "4:143",
+    "4:148",
+    "4:149",
+    "4:150",
+    "4:152",
+    "4:153",
+    "4:154",
+    "4:155",
+    "4:147",
+    "4:151",
+    "4:157",
+    "4:158",
+    "4:160",
+    "4:161",
+    "4:162",
+    "4:156",
+    "4:159",
+    "4:164",
+    "4:165",
+    "4:166",
+    "4:170",
+    "4:171",
+    "4:172",
+    "4:176",
+    "4:177",
+    "4:178",
+    "4:181",
+    "4:163",
+    "4:169",
+    "4:175",
+    "4:183",
+    "4:184",
+    "4:185",
+    "4:186",
+    "4:187",
+    "4:189",
+    "4:190",
+    "4:191",
+    "4:192",
+    "4:193",
+    "4:195",
+    "4:196",
+    "4:197",
+    "4:198",
+    "4:199",
+    "4:200",
+    "4:182",
+    "4:188",
+    "4:194",
+    "4:202",
+    "4:203",
+    "4:204",
+    "4:205",
+    "4:206",
+    "4:207",
+    "4:211",
+    "4:212",
+    "4:213",
+    "4:216",
+    "4:201",
+    "4:210",
+    "4:218",
+    "4:219",
+    "4:220",
+    "4:221",
+    "4:222",
+    "4:224",
+    "4:225",
+    "4:226",
+    "4:227",
+    "4:228",
+    "4:229",
+    "4:217",
+    "4:223",
+    "I4:114;4:49",
+    "I4:114;4:50",
+    "I4:114;4:51",
+    "I4:114;4:52",
+    "I4:114;4:53",
+    "I4:114;4:54",
+    "I4:123;4:49",
+    "I4:123;4:50",
+    "I4:123;4:51",
+    "I4:123;4:52",
+    "I4:123;4:53",
+    "I4:123;4:54",
+    "I4:166;4:138",
+    "I4:166;4:139",
+    "I4:172;4:141",
+    "I4:172;4:142",
+    "I4:178;4:144",
+    "I4:178;4:145",
+    "I4:207;4:138",
+    "I4:207;4:139",
+    "I4:213;4:138",
+    "I4:213;4:139",
+    "4:50",
+    "4:51",
+    "4:52",
+    "4:53",
+    "4:54",
+    "4:57",
+    "4:58",
+    "4:59",
+    "4:62",
+    "4:63",
+    "4:64",
+    "4:67",
+    "4:68",
+    "4:69",
+    "4:72",
+    "4:73",
+    "4:76",
+    "4:77",
+    "4:78",
+    "4:81",
+    "4:82",
+    "4:85",
+    "4:86",
+    "4:87"
+  ],
+  "sets": {
+    "Button": {
+      "id": "4:112",
+      "variants": [
+        {
+          "id": "4:88",
+          "name": "Style=Primary, State=Default"
+        },
+        {
+          "id": "4:94",
+          "name": "Style=Primary, State=Disabled"
+        },
+        {
+          "id": "4:100",
+          "name": "Style=Secondary, State=Default"
+        },
+        {
+          "id": "4:106",
+          "name": "Style=Secondary, State=Disabled"
+        }
+      ],
+      "properties": {
+        "Label#4:12": {
+          "type": "TEXT",
+          "defaultValue": "Запустить"
+        },
+        "Icon#4:13": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "4:79",
+          "preferredValues": []
+        },
+        "Show icon#4:14": {
+          "type": "BOOLEAN",
+          "defaultValue": false
+        },
+        "Style": {
+          "type": "VARIANT",
+          "defaultValue": "Primary",
+          "variantOptions": [
+            "Primary",
+            "Secondary"
+          ]
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Disabled"
+          ]
+        }
+      }
+    },
+    "NavItem": {
+      "id": "4:131",
+      "variants": [
+        {
+          "id": "4:113",
+          "name": "State=Default"
+        },
+        {
+          "id": "4:122",
+          "name": "State=Active"
+        }
+      ],
+      "properties": {
+        "Icon#4:19": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "4:48",
+          "preferredValues": []
+        },
+        "Label#4:20": {
+          "type": "TEXT",
+          "defaultValue": "Обзор завода"
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Active"
+          ]
+        }
+      }
+    },
+    "Filter": {
+      "id": "4:136",
+      "variants": [
+        {
+          "id": "4:132",
+          "name": "State=Default"
+        },
+        {
+          "id": "4:134",
+          "name": "State=Selected"
+        }
+      ],
+      "properties": {
+        "Label#4:23": {
+          "type": "TEXT",
+          "defaultValue": "Все участки"
+        },
+        "State": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Selected"
+          ]
+        }
+      }
+    },
+    "Badge": {
+      "id": "4:146",
+      "variants": [
+        {
+          "id": "4:137",
+          "name": "Status=Running"
+        },
+        {
+          "id": "4:140",
+          "name": "Status=Warning"
+        },
+        {
+          "id": "4:143",
+          "name": "Status=Stopped"
+        }
+      ],
+      "properties": {
+        "Label#4:27": {
+          "type": "TEXT",
+          "defaultValue": "В норме"
+        },
+        "Status": {
+          "type": "VARIANT",
+          "defaultValue": "Running",
+          "variantOptions": [
+            "Running",
+            "Warning",
+            "Stopped"
+          ]
+        }
+      }
+    },
+    "Metric": {
+      "id": "4:155",
+      "variants": [
+        {
+          "id": "4:147",
+          "name": "Size=Desktop"
+        },
+        {
+          "id": "4:151",
+          "name": "Size=Mobile"
+        }
+      ],
+      "properties": {
+        "Label#4:34": {
+          "type": "TEXT",
+          "defaultValue": "Выпуск за смену"
+        },
+        "Value#4:35": {
+          "type": "TEXT",
+          "defaultValue": "39 авто"
+        },
+        "Footer#4:36": {
+          "type": "TEXT",
+          "defaultValue": "План: 44 · 88,6%"
+        },
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Desktop",
+          "variantOptions": [
+            "Desktop",
+            "Mobile"
+          ]
+        }
+      }
+    },
+    "SectionHeader": {
+      "id": "4:162",
+      "variants": [
+        {
+          "id": "4:156",
+          "name": "Size=Desktop"
+        },
+        {
+          "id": "4:159",
+          "name": "Size=Mobile"
+        }
+      ],
+      "properties": {
+        "Title#4:41": {
+          "type": "TEXT",
+          "defaultValue": "Карта производственных участков"
+        },
+        "Subtitle#4:42": {
+          "type": "TEXT",
+          "defaultValue": "Нажмите на участок для подробностей"
+        },
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Desktop",
+          "variantOptions": [
+            "Desktop",
+            "Mobile"
+          ]
+        }
+      }
+    },
+    "MapZone": {
+      "id": "4:181",
+      "variants": [
+        {
+          "id": "4:163",
+          "name": "Status=Running"
+        },
+        {
+          "id": "4:169",
+          "name": "Status=Warning"
+        },
+        {
+          "id": "4:175",
+          "name": "Status=Stopped"
+        }
+      ],
+      "properties": {
+        "Title#4:49": {
+          "type": "TEXT",
+          "defaultValue": "Сборочная линия"
+        },
+        "Subtitle#4:50": {
+          "type": "TEXT",
+          "defaultValue": "20,0 ед./ч · 6 постов"
+        },
+        "Status": {
+          "type": "VARIANT",
+          "defaultValue": "Running",
+          "variantOptions": [
+            "Running",
+            "Warning",
+            "Stopped"
+          ]
+        }
+      }
+    },
+    "Incident": {
+      "id": "4:200",
+      "variants": [
+        {
+          "id": "4:182",
+          "name": "Severity=Critical"
+        },
+        {
+          "id": "4:188",
+          "name": "Severity=Warning"
+        },
+        {
+          "id": "4:194",
+          "name": "Severity=Resolved"
+        }
+      ],
+      "properties": {
+        "Title#4:60": {
+          "type": "TEXT",
+          "defaultValue": "Задержка комплектующих"
+        },
+        "Detail#4:61": {
+          "type": "TEXT",
+          "defaultValue": "Логистика · подача ниже потребности сборки"
+        },
+        "Time#4:62": {
+          "type": "TEXT",
+          "defaultValue": "10:00 · Ожидает реакции"
+        },
+        "Severity": {
+          "type": "VARIANT",
+          "defaultValue": "Critical",
+          "variantOptions": [
+            "Critical",
+            "Warning",
+            "Resolved"
+          ]
+        }
+      }
+    },
+    "LineRow": {
+      "id": "4:216",
+      "variants": [
+        {
+          "id": "4:201",
+          "name": "Size=Full"
+        },
+        {
+          "id": "4:210",
+          "name": "Size=Compact"
+        }
+      ],
+      "properties": {
+        "Name#4:72": {
+          "type": "TEXT",
+          "defaultValue": "Финальная сборка"
+        },
+        "Load#4:73": {
+          "type": "TEXT",
+          "defaultValue": "91%"
+        },
+        "Output#4:74": {
+          "type": "TEXT",
+          "defaultValue": "39"
+        },
+        "Rate#4:75": {
+          "type": "TEXT",
+          "defaultValue": "20,0"
+        },
+        "Downtime#4:76": {
+          "type": "TEXT",
+          "defaultValue": "2"
+        },
+        "Status#4:77": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "4:137",
+          "preferredValues": []
+        },
+        "Size": {
+          "type": "VARIANT",
+          "defaultValue": "Full",
+          "variantOptions": [
+            "Full",
+            "Compact"
+          ]
+        }
+      }
+    },
+    "QualityCard": {
+      "id": "4:229",
+      "variants": [
+        {
+          "id": "4:217",
+          "name": "Status=Normal"
+        },
+        {
+          "id": "4:223",
+          "name": "Status=Attention"
+        }
+      ],
+      "properties": {
+        "Title#4:87": {
+          "type": "TEXT",
+          "defaultValue": "Окрасочный участок"
+        },
+        "Value#4:88": {
+          "type": "TEXT",
+          "defaultValue": "97,6%"
+        },
+        "Detail#4:89": {
+          "type": "TEXT",
+          "defaultValue": "42 операции · 1 дефектная ед."
+        },
+        "Status": {
+          "type": "VARIANT",
+          "defaultValue": "Normal",
+          "variantOptions": [
+            "Normal",
+            "Attention"
+          ]
+        }
+      }
+    }
+  },
+  "singles": {
+    "Icon/Overview": "4:48",
+    "Icon/Lines": "4:55",
+    "Icon/Incidents": "4:60",
+    "Icon/Quality": "4:65",
+    "Icon/Reports": "4:70",
+    "Icon/Settings": "4:74",
+    "Icon/Play": "4:79",
+    "Icon/Clock": "4:83"
+  },
+  "counts": {
+    "families": 10,
+    "icons": 8,
+    "nodes": 170
+  },
+  "validation": {
+    "fonts": "Arimo Regular/Bold loaded",
+    "spacing": "bound to source-compatible library tokens",
+    "editable": true
+  }
+}

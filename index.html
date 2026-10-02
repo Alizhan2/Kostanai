@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Allur Plant Twin — интерактивный прототип цифрового двойника производства для Qostanai AI Industry Hackathon 2026.">
+  <title>Allur Plant Twin — цифровой двойник завода</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="engine.js" defer></script>
+  <script src="ml-features.js" defer></script>
+  <script src="models/buffer-risk.js" defer></script>
+  <script src="ml-runtime.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brandmark">A</div><div><b>ALLUR</b><small>PLANT INTELLIGENCE</small></div></div>
+    <div class="nav-label">Рабочее пространство</div>
+    <nav class="nav" aria-label="Основная навигация">
+      <button data-page="overview" class="active"><img class="nav-ico" src="assets/icons/overview.svg" alt="">Обзор завода</button>
+      <button data-page="lines"><img class="nav-ico" src="assets/icons/lines.svg" alt="">Производственные линии</button>
+      <button data-page="incidents"><img class="nav-ico" src="assets/icons/incidents.svg" alt="">Остановки и инциденты</button>
+      <button data-page="quality"><img class="nav-ico" src="assets/icons/quality.svg" alt="">Качество продукции</button>
+      <button data-page="reports"><img class="nav-ico" src="assets/icons/reports.svg" alt="">Отчёты и аналитика</button>
+    </nav>
+    <div class="side-bottom">
+      <div class="nav-label">Система</div>
+      <nav class="nav" aria-label="Настройки"><button data-page="settings"><img class="nav-ico" src="assets/icons/settings.svg" alt="">Данные и настройки</button></nav>
+      <div class="live-card"><strong><i class="pulse"></i><span id="liveStatus">Симуляция на паузе</span></strong><p>Qostanai Industry Hackathon<br>Синтетическая модель завода</p></div>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="crumb">Производство / <span id="breadcrumb">Обзор завода</span></div><b class="mobile-brand">ALLUR</b><div class="top-right"><select class="shift" id="shift" aria-label="Смена"><option value="day">Дневная смена · 08:00–20:00</option><option value="night">Ночная смена · 20:00–08:00</option></select><div class="updated"><i aria-hidden="true"></i><span id="simulationClock">Модель · 10:00</span></div></div></header>
+    <nav class="mobile-nav" aria-label="Мобильная навигация"><select id="mobilePage" aria-label="Раздел"><option value="overview">Обзор завода</option><option value="lines">Линии</option><option value="incidents">Инциденты</option><option value="quality">Качество</option><option value="reports">Отчёты</option><option value="settings">Данные и настройки</option></select></nav>
+    <section class="head"><div class="eyebrow">Костанай · Кейс №2</div><h1 id="pageTitle">Цифровой двойник завода</h1><p id="pageSubtitle">Наблюдайте за линиями и предупреждайте остановки</p></section>
+    <section class="simulation-bar" aria-label="Управление симуляцией"><div class="sim-controls"><button id="play" class="primary-btn">Запустить</button><button id="step" class="control-btn">+5 минут</button><select id="speed" aria-label="Скорость симуляции"><option value="1">Темп ×1</option><option value="3">Темп ×3</option><option value="6">Темп ×6</option></select></div><div class="scenario-row"><div class="scenario-control"><label for="scenario">Сценарий</label><select id="scenario"><option value="normal">Обычная смена</option><option value="shortage">Задержка деталей</option><option value="quality">Дефекты окраски</option></select></div><button id="reset" class="control-btn">Сбросить</button></div></section>
+    <div class="filters" id="filters" aria-label="Фильтр участка"><button class="sel" data-filter="all" aria-pressed="true">Все участки</button><button data-filter="body" aria-pressed="false">Кузовной цех</button><button data-filter="paint" aria-pressed="false">Окрасочный</button><button data-filter="assembly" aria-pressed="false">Сборочная линия</button><button data-filter="logistics" aria-pressed="false">Логистика</button></div>
+    <div id="content"></div>
+    <footer class="footer"><span>Allur Plant Twin · прототип для кейса №2</span><span id="dataSource">Данные синтетические · схема условная</span></footer>
+  </main>
+</div>
+<dialog id="detailDialog"><div id="detailContent"></div><button id="closeDialog" class="control-btn">Закрыть</button></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

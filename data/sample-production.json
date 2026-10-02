@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "elapsedMinutes": 120,
+  "shift": "day",
+  "lines": [
+    {
+      "id": "body",
+      "capacity": 26,
+      "throughput": 23.92,
+      "produced": 47,
+      "defects": 1,
+      "downtimeMinutes": 3,
+      "status": "running",
+      "buffer": 0,
+      "demandPerHour": 0,
+      "replenishmentPerHour": 0
+    },
+    {
+      "id": "paint",
+      "capacity": 24,
+      "throughput": 20.64,
+      "produced": 42,
+      "defects": 1,
+      "downtimeMinutes": 4,
+      "status": "running",
+      "buffer": 0,
+      "demandPerHour": 0,
+      "replenishmentPerHour": 0
+    },
+    {
+      "id": "assembly",
+      "capacity": 22,
+      "throughput": 20.02,
+      "produced": 39,
+      "defects": 1,
+      "downtimeMinutes": 2,
+      "status": "warning",
+      "buffer": 12,
+      "demandPerHour": 20,
+      "replenishmentPerHour": 4
+    },
+    {
+      "id": "logistics",
+      "capacity": 28,
+      "throughput": 10.64,
+      "produced": 51,
+      "defects": 0,
+      "downtimeMinutes": 3,
+      "status": "warning",
+      "buffer": 0,
+      "demandPerHour": 0,
+      "replenishmentPerHour": 0
+    }
+  ]
+}

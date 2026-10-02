@@ -1,0 +1,90 @@
+{
+  "fileKey": "uBCseosrNd3f8jDkTayoNc",
+  "pageId": "0:1",
+  "screens": [
+    {
+      "id": "3:78",
+      "name": "Allur / Overview",
+      "width": 1440,
+      "height": 1928,
+      "textCount": 118,
+      "instanceCount": 50,
+      "fonts": [
+        "Arimo"
+      ],
+      "imageNodeIds": [],
+      "navigationCount": 4
+    },
+    {
+      "id": "3:79",
+      "name": "Allur / Lines",
+      "width": 1440,
+      "height": 1355,
+      "textCount": 86,
+      "instanceCount": 37,
+      "fonts": [
+        "Arimo"
+      ],
+      "imageNodeIds": [],
+      "navigationCount": 4
+    },
+    {
+      "id": "3:80",
+      "name": "Allur / Incidents",
+      "width": 1440,
+      "height": 979,
+      "textCount": 54,
+      "instanceCount": 30,
+      "fonts": [
+        "Arimo"
+      ],
+      "imageNodeIds": [],
+      "navigationCount": 4
+    },
+    {
+      "id": "3:81",
+      "name": "Allur / Quality",
+      "width": 1440,
+      "height": 1159,
+      "textCount": 46,
+      "instanceCount": 28,
+      "fonts": [
+        "Arimo"
+      ],
+      "imageNodeIds": [],
+      "navigationCount": 4
+    },
+    {
+      "id": "3:82",
+      "name": "Allur / Reports",
+      "width": 1440,
+      "height": 1369,
+      "textCount": 73,
+      "instanceCount": 36,
+      "fonts": [
+        "Arimo"
+      ],
+      "imageNodeIds": [],
+      "navigationCount": 4
+    },
+    {
+      "id": "3:83",
+      "name": "Allur / Mobile",
+      "width": 390,
+      "height": 2018,
+      "textCount": 63,
+      "instanceCount": 27,
+      "fonts": [
+        "Arimo"
+      ],
+      "imageNodeIds": [],
+      "navigationCount": 0
+    }
+  ],
+  "editable": true,
+  "prototypeLinks": 20,
+  "componentSetCount": 10,
+  "variableCount": 56,
+  "textStyleCount": 9,
+  "mutatedNodeIds": []
+}
