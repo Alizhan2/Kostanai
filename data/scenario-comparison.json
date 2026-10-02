@@ -1,7 +1,17 @@
 {
   "source": "synthetic simulation; not measured Allur results",
+  "scenario": "shortage",
   "horizonMinutes": 120,
   "interventionAfterMinutes": 30,
+  "assumptions": {
+    "initialBufferKits": 12,
+    "demandPerHour": 20,
+    "initialSupplyPerHour": 4,
+    "addedKits": 30,
+    "restoredSupplyPerHour": 21,
+    "baselineStopAfterMinutes": 45
+  },
+  "interventionWithinHorizon": true,
   "baseline": {
     "produced": 14.8,
     "downtimeMinutes": 75

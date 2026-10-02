@@ -154,6 +154,34 @@ h2,h3,p{margin-top:0}
 .report-summary{font-size:14px;line-height:20px;color:var(--muted);margin-bottom:16px}
 .report-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
 .report-actions button{min-width:160px}
+.comparison-control{max-width:600px;margin:24px 0}
+.comparison-control label{display:block;font-size:14px;font-weight:700;margin-bottom:14px}
+.comparison-control output{font-variant-numeric:tabular-nums}
+.comparison-control input{width:100%;margin:0;accent-color:#587c22;cursor:pointer;min-height:32px}
+.comparison-range-labels{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.comparison-timing{font-size:14px;line-height:20px;margin:16px 0}
+.comparison-gains{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.comparison-gains>div{padding:16px;background:#eff5e8;border-radius:12px}
+.comparison-gains strong{display:block;font-size:28px;line-height:36px;color:#45661a}
+.comparison-gains span{display:block;font-size:12px;line-height:18px;margin-top:4px;color:var(--muted)}
+.comparison-chart{margin:24px 0 16px;max-width:800px}
+.comparison-chart svg{display:block;width:100%;height:auto;overflow:visible}
+.comparison-chart text{font-size:12px;fill:#6e7a86;font-family:inherit}
+.comparison-axis{stroke:#ccd5dd;stroke-width:1}
+.comparison-marker{stroke:#adb7c0;stroke-width:1;stroke-dasharray:3 4}
+.comparison-line{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.comparison-baseline{stroke:#b26141;stroke-dasharray:7 5}
+.comparison-intervention{stroke:#587c22}
+.comparison-chart figcaption{display:flex;flex-wrap:wrap;gap:10px 20px;font-size:12px;line-height:18px;color:var(--muted);margin-top:10px}
+.comparison-key:before{content:'';display:inline-block;width:22px;border-top:3px solid #587c22;margin-right:7px;vertical-align:middle}
+.comparison-key.baseline:before{border-color:#b26141;border-top-style:dashed}
+.comparison-table{width:100%;border-collapse:collapse;font-size:12px;line-height:18px}
+.comparison-table caption{text-align:left;color:var(--muted);font-size:12px;padding-bottom:12px}
+.comparison-table th,.comparison-table td{text-align:left;padding:12px 8px;border-bottom:1px solid var(--line)}
+.comparison-table thead th{color:var(--muted);font-weight:400}
+.comparison-table tbody th{font-weight:400}
+.comparison-table td{font-variant-numeric:tabular-nums}
+@media(max-width:600px){.comparison-chart text{font-size:18px}}
 .report-forecast{margin:16px 0}
 .timeline{list-style:none;margin:16px 0 0;padding:0}
 .timeline li{display:flex;gap:12px;align-items:baseline;font-size:14px;line-height:20px;color:var(--muted);padding:8px 0;overflow-wrap:anywhere}

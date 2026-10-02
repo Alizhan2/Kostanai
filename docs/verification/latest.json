@@ -1,14 +1,16 @@
 {
-  "version": "0.6.1",
-  "verifiedAtUTC": "2026-10-02T19:58:27.804047+00:00",
+  "version": "0.7.0",
+  "verifiedAtUTC": "2026-10-02T20:11:05.042129+00:00",
   "engineTests": {
     "passed": true,
-    "count": 12,
+    "count": 15,
+    "productionTests": 12,
+    "scenarioComparisonTests": 3,
     "command": "npm test"
   },
   "syntaxChecks": {
     "passed": true,
-    "count": 8,
+    "count": 9,
     "command": "npm run check"
   },
   "modelExport": {
@@ -34,38 +36,69 @@
       }
     ]
   },
+  "modelExportEvidence": {
+    "verifiedVersion": "0.6.1",
+    "rerunInThisVersion": false,
+    "sourcesUnchanged": true,
+    "sourceSha256": {
+      "ml-features.js": "3fcace9e9d5f33929287486cf4caf1fcc112307bfa3be1a3f9bf525da395035a",
+      "ml-runtime.js": "bd09f2e83f6a3a92c64898cef036a5667fe0fe9aa93cbf85f22e80cfba70f8b0",
+      "aps-runtime.js": "d8e75d11e9ddb4f04e25804c252b1ed61c98ee274e1473f55638ad4e80aa5f01",
+      "docs/verification/model-export.json": "463af358e033b34ac4fdd24f69546c612037c5f8a4b266ea59c87753fa274e9e",
+      "data/aps-summary.js": "6e97d619b1849807308899a428c5cdba91b86014a1404a83ca1bf5a60d01026c",
+      "data/aps-examples.js": "a05974fcbdb9b729698b61bbc031f9a2445e34c5382a94ae5d37ede99fd28535",
+      "data/aps-examples.json": "8e764f893086f4b9c417b8d37c848ea2ba38b561bbbf9887bffbb427ad9c6d5f",
+      "models/buffer-risk.js": "f78a2f371390a8defcf5ac24d2fd93aa46898f1dc2770c32e828605e2645cc8e",
+      "models/buffer-risk.json": "475420f80d4ccdb146576d67fa1a49d97e724d2c3a287e446ff49a7e200ac45c",
+      "models/aps-diagnostic.js": "0566013a955af79ab447b4968967a90daedcc002107b75d0c58be0c27bda1d07",
+      "models/aps-diagnostic.json": "a5ba73c2164ef286f454ee95061e06eb3cec37660810cc7c6320889344f49541",
+      "ml/data/training.csv": "1f3dd44feaa9c477425484b4cf5ae01cfd3fbcc2e65f8d82f1a8201901def7e2",
+      "ml/results/holdout-predictions.csv": "2fbe132ce0da9b0bb638153f4ea7fed461ca5ce391a830de3b8effeed27c7105",
+      "ml/results/aps/holdout-predictions.csv": "3328036956a5da93973ccaba043d57019baf9b75dca727ac5d763c65084f4621",
+      "ml/public/aps/aps_failure_test_set.csv": "2cdf6f7661c7b4c63333c93cdec36a3a82350176b604a2312cf82799fb2712f3"
+    }
+  },
   "browser": {
     "passed": true,
     "engine": "Chromium",
     "transport": "local HTTP",
-    "mobileWidth": 390,
-    "sectionsChecked": 6,
+    "desktopViewport": [
+      1280,
+      1100
+    ],
+    "mobileViewport": [
+      390,
+      844
+    ],
+    "mobileDocumentWidth": 390,
+    "mobileComparisonCardWidth": 358,
     "scenarios": [
-      "APS example selection",
-      "invalid JSON preserves previous result",
-      "observation download/upload roundtrip",
-      "valid upload clears error",
-      "APS leaves plant state unchanged",
-      "exact 45-minute stop",
-      "downtime accumulation",
-      "refill resets model history",
-      "prediction returns after new observations"
+      "home and reports load",
+      "keyboard selection Home/End/ArrowRight",
+      "comparison graph and table update",
+      "end-of-horizon action has no effect",
+      "production localStorage unchanged by comparison",
+      "JSON export exactly matches calculation with 25 points",
+      "mobile navigation retains selected time",
+      "slider aria-valuetext updates"
     ],
     "javascriptErrors": 0,
     "requiredAssetFailures": 0,
     "externalRequests": 0
   },
   "limitations": [
+    "Independent synthetic experiment; not measured Allur benefit",
     "Factory telemetry absent; external CSV training route not exercised",
-    "file:// launch blocked by browser policy; local HTTP verified",
-    "No public deployment checked; team identity and repository publication pending"
+    "Earlier APS flow and model export evidence retained; unchanged artifacts",
+    "Local HTTP verified; file:// and public deployment not checked",
+    "Team identity and repository publication pending"
   ],
   "sourceSha256": {
-    "package.json": "ef8b0a45de4c658448347fbc5a5e1d8d7cbf6262d9d8eee79c3dc689506defad",
-    "index.html": "c6479dea25916a0b14c83f677efda0e2a8291db527be9e438db74774e064ec4d",
-    "styles.css": "ecb900fc2c3b5a2ffa7ec80f004afef009b45f5b5a8007c4bd5b3a85549c8499",
+    "package.json": "e335b74f14b5a2befb1d55d09f67a67fe05fb88bd57012efc2070bbc8e587889",
+    "index.html": "9fd908c2f334683ff0621d61c8be70424073aec2e76b50ebbdcac87626e8a26d",
+    "styles.css": "1446c8d19f29fc65e1c704010fc513442b781f8d299bd6158b10d804daa10579",
     "engine.js": "f660ba3d0c7d337696a0fc1b9932ee7beb12c6c920adc8f80f3cfdfff715e0d4",
-    "app.js": "7e2398233b2b86aaabcb3a2eee5e70163b7bf42d65139d70028f71f96817f4ff",
+    "app.js": "c3c5b06a047c3708544f54d7ddc2e64ddb6c1932689d9e0c496d56555480fb45",
     "ml-features.js": "3fcace9e9d5f33929287486cf4caf1fcc112307bfa3be1a3f9bf525da395035a",
     "ml-runtime.js": "bd09f2e83f6a3a92c64898cef036a5667fe0fe9aa93cbf85f22e80cfba70f8b0",
     "aps-runtime.js": "d8e75d11e9ddb4f04e25804c252b1ed61c98ee274e1473f55638ad4e80aa5f01",
@@ -88,7 +121,11 @@
     "ml/results/holdout-predictions.csv": "2fbe132ce0da9b0bb638153f4ea7fed461ca5ce391a830de3b8effeed27c7105",
     "ml/results/aps/holdout-predictions.csv": "3328036956a5da93973ccaba043d57019baf9b75dca727ac5d763c65084f4621",
     "ml/public/aps/aps_failure_test_set.csv": "2cdf6f7661c7b4c63333c93cdec36a3a82350176b604a2312cf82799fb2712f3",
-    "docs/presentation.html": "c4267aca5c80215f736d1a5d90dabc50066ddaf2d421f47066d04cecf591b3db",
-    "docs/presentation.pdf": "8ddab98976efdda65f2742ed376c23feb64f6592be0b8d9f5dde2e5a7eb8493f"
+    "docs/presentation.html": "90c23c42d5101fbd1e030359e70bdc63ab65ccd2c1036018667ab4135fe8223e",
+    "docs/presentation.pdf": "ba31680332e0d2053c2d4d385c17939f5efdd6dbee7e900810ece3fbbbca4fa5",
+    "scenario-analysis.js": "ca7cc356e0af689642b9c4b1674e50719d830df5744ea4eed1842b967e9b9287",
+    "tests/scenario-analysis.test.js": "4345ca88c3aa961e6bfe8ab661fc8ae635c22a910b41010d95854dea7f6e293c",
+    "scripts/compare-scenarios.js": "4aceabe51291133a0a0da42285473f3906b6d4818ec481871f94f4321a850442",
+    "data/scenario-comparison.json": "d1e366bdf2a11ccbc3274b42c3cb5d1a0856cc1fe35d186938799bf122edac3e"
   }
 }

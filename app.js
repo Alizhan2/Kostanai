@@ -12,6 +12,7 @@
     settings:['Данные и настройки','Импорт снимка производства и описание расчётов']
   };
   let page = 'overview', filter = 'all', selectedZone = 'body', speed = 1;
+  let interventionMinute = 30;
   let state = E.createState('shortage');
   try {
     const saved = JSON.parse(localStorage.getItem('allur-twin-v1'));
@@ -125,9 +126,37 @@
     return '<section class="card section-card">'+header('Диагностика Scania APS','Открытые эксплуатационные данные грузовиков')+
       '<div class="setting-text"><p>Отдельная модель различает неисправность пневмосистемы APS и неисправность другого компонента. Оценка выполнена на '+fmt(score.rows,0)+' исходных записях Scania.</p><div class="risk-evidence"><span>Полнота: '+fmt(score.recall*100)+'%</span><span>Точность предупреждений: '+fmt(score.precision*100)+'%</span><span>Ложные предупреждения: '+fmt(score.confusion_matrix[0][1],0)+'</span></div><p>Порог учитывает высокую стоимость пропуска. Эти показатели не относятся к оборудованию Allur или запасу комплектующих.</p></div><div class="report-actions"><a class="primary-btn" style="display:inline-flex;text-decoration:none" href="docs/aps-demo.html">Открыть диагностику</a><a class="control-btn" style="display:inline-flex;text-decoration:none" href="ml/results/aps/evaluation.png">Графики оценки</a></div></section>';
   }
+  function comparisonResults() {
+    const result = window.PlantScenarioAnalysis.compare(interventionMinute);
+    const maxOutput = Math.max(result.baseline.produced, result.intervention.produced, 1);
+    const x = minute => 42 + minute / 120 * 516;
+    const y = output => 154 - output / maxOutput * 122;
+    const curve = key => result.series.map((point, i) => (i ? 'L' : 'M') +
+      fmtSvg(x(point.minute)) + ',' + fmtSvg(y(point[key]))).join(' ');
+    function fmtSvg(value) { return value.toFixed(2); }
+    const timing = interventionMinute < 45 ? 'Пополнение до остановки: простой предотвращён.'
+      : interventionMinute === 45 ? 'Пополнение на границе исчерпания: простой предотвращён.'
+      : interventionMinute === 120 ? 'Пополнение в конце горизонта уже не влияет на результат этих двух часов.'
+      : 'До пополнения линия простаивает '+fmt(interventionMinute - 45,0)+' мин. Этот простой уже не вернуть.';
+    return '<div class="comparison-summary" aria-live="polite" aria-atomic="true">'+
+      '<p class="comparison-timing">'+timing+'</p><div class="comparison-gains"><div><strong>'+fmt(result.avoidedDowntimeMinutes,0)+' мин</strong><span>предотвращённого простоя</span></div><div><strong>+'+fmt(result.additionalOutput)+'</strong><span>эквивалентных авто за 2 часа</span></div></div></div>'+
+      '<figure class="comparison-chart"><svg viewBox="0 0 600 190" role="img" aria-label="Накопленный выпуск за два часа: без действий '+fmt(result.baseline.produced)+'; с пополнением '+fmt(result.intervention.produced)+' эквивалентных авто.">'+
+      '<line class="comparison-axis" x1="42" y1="154" x2="558" y2="154"/>'+[0,60,120].map(minute=>'<text x="'+x(minute)+'" y="178" text-anchor="middle">'+minute+' мин</text>').join('')+
+      '<text x="34" y="157" text-anchor="end">0</text><text x="34" y="36" text-anchor="end">'+fmt(maxOutput,0)+'</text>'+
+      '<line class="comparison-marker" x1="'+x(interventionMinute)+'" y1="25" x2="'+x(interventionMinute)+'" y2="154"/>'+
+      '<path class="comparison-line comparison-baseline" d="'+curve('baselineOutput')+'"/><path class="comparison-line comparison-intervention" d="'+curve('interventionOutput')+'"/></svg>'+
+      '<figcaption><span class="comparison-key baseline">Без действий</span><span class="comparison-key intervention">С пополнением</span><span>Вертикальная линия — время пополнения</span></figcaption></figure>'+
+      '<table class="comparison-table"><caption>Дополнительный выпуск и простой за следующие 120 минут</caption><thead><tr><th scope="col">Сценарий</th><th scope="col">Выпуск, экв. авто</th><th scope="col">Простой, мин</th></tr></thead><tbody><tr><th scope="row">Без действий</th><td>'+fmt(result.baseline.produced)+'</td><td>'+fmt(result.baseline.downtimeMinutes,0)+'</td></tr><tr><th scope="row">Пополнение через '+interventionMinute+' мин</th><td>'+fmt(result.intervention.produced)+'</td><td>'+fmt(result.intervention.downtimeMinutes,0)+'</td></tr></tbody></table>';
+  }
+  function comparisonCard() {
+    return '<section class="card section-card">'+header('Что будет, если пополнить буфер?','Сравнение двух сценариев задержки деталей · горизонт 2 часа')+
+      '<p class="setting-text">Одинаковый старт: 12 комплектов, расход 20 в час, подача 4 в час. В выбранный момент добавляем 30 комплектов и восстанавливаем подачу до 21 в час.</p>'+
+      '<div class="comparison-control"><label for="interventionMinute">Пополнить через <output id="interventionValue" for="interventionMinute">'+interventionMinute+'</output> мин</label><input type="range" id="interventionMinute" min="0" max="120" step="5" value="'+interventionMinute+'" aria-valuetext="Через '+interventionMinute+' минут" aria-describedby="comparisonHelp"><div class="comparison-range-labels"><span>Сейчас</span><span>Через 2 часа</span></div></div>'+
+      '<div id="comparisonResults">'+comparisonResults()+'</div><p class="detail-sub" id="comparisonHelp">Самостоятельный синтетический эксперимент с начальным сценарием задержки деталей. Выбор времени не меняет текущую смену. Эффект на Allur не измерялся; дробный выпуск — расчётный эквивалент. Показатели округлены.</p><div class="report-actions"><button class="control-btn" data-export="comparison">Скачать сравнение JSON</button></div></section>';
+  }
   function reportsPage() {
     const m=E.metrics(state,filter),r=E.riskFor(state.lines.find(l=>l.id==='assembly'));
-    return '<div class="page-stack"><section class="card section-card">'+header('Отчёт за текущую смену','Срез на '+E.timeLabel(state.elapsedMinutes,state.shift)+' · '+(filter==='all'?'весь завод':esc(E.ZONES[filter].name)))+'<p class="report-total">'+fmt(m.produced,0)+(filter==='all'?' автомобилей':' ед.')+' из '+fmt(m.plan,0)+' по плану</p><p class="report-summary">Загрузка: '+fmt(m.load)+'% · доступность: '+fmt(m.availability)+'% · первичное качество: '+fmt(m.quality)+'%<br>Простой оборудования: '+fmt(m.downtime)+' машино-мин · активные инциденты: '+m.openIncidents+'</p><details class="report-forecast"><summary>Прогноз финальной сборки</summary><p class="detail-sub">Риск: '+r.score+'/100'+(r.minutesToStop!==null?' · до исчерпания буфера '+fmt(r.minutesToStop)+' мин.':'; подача покрывает расход.')+'</p>'+mlCard()+'</details><div class="report-actions"><button class="primary-btn" data-export="csv">Скачать CSV</button><button class="control-btn" data-export="report">Отчёт .txt</button><button class="control-btn" data-action="print">Печать / PDF</button></div></section><section class="card section-card">'+header('Состояние производственных линий','Показатели текущей смены')+lineTable(true)+'</section><section class="card section-card">'+header('Журнал действий оператора','Текущая демонстрационная сессия')+(state.actions.length?'<ul class="timeline">'+state.actions.map(a=>'<li><time>'+E.timeLabel(a.minute,state.shift)+'</time>'+esc(a.text)+'</li>').join('')+'</ul>':'<div class="empty">Действий пока нет. Запустите сценарий или вмешайтесь в работу линии.</div>')+'</section>'+diagnosticsCard()+'</div>';
+    return '<div class="page-stack"><section class="card section-card">'+header('Отчёт за текущую смену','Срез на '+E.timeLabel(state.elapsedMinutes,state.shift)+' · '+(filter==='all'?'весь завод':esc(E.ZONES[filter].name)))+'<p class="report-total">'+fmt(m.produced,0)+(filter==='all'?' автомобилей':' ед.')+' из '+fmt(m.plan,0)+' по плану</p><p class="report-summary">Загрузка: '+fmt(m.load)+'% · доступность: '+fmt(m.availability)+'% · первичное качество: '+fmt(m.quality)+'%<br>Простой оборудования: '+fmt(m.downtime)+' машино-мин · активные инциденты: '+m.openIncidents+'</p><details class="report-forecast"><summary>Прогноз финальной сборки</summary><p class="detail-sub">Риск: '+r.score+'/100'+(r.minutesToStop!==null?' · до исчерпания буфера '+fmt(r.minutesToStop)+' мин.':'; подача покрывает расход.')+'</p>'+mlCard()+'</details><div class="report-actions"><button class="primary-btn" data-export="csv">Скачать CSV</button><button class="control-btn" data-export="report">Отчёт .txt</button><button class="control-btn" data-action="print">Печать / PDF</button></div></section>'+comparisonCard()+'<section class="card section-card">'+header('Состояние производственных линий','Показатели текущей смены')+lineTable(true)+'</section><section class="card section-card">'+header('Журнал действий оператора','Текущая демонстрационная сессия')+(state.actions.length?'<ul class="timeline">'+state.actions.map(a=>'<li><time>'+E.timeLabel(a.minute,state.shift)+'</time>'+esc(a.text)+'</li>').join('')+'</ul>':'<div class="empty">Действий пока нет. Запустите сценарий или вмешайтесь в работу линии.</div>')+'</section>'+diagnosticsCard()+'</div>';
   }
   function settingsPage() {
     return '<div class="view-grid"><section class="card section-card">'+header('Источник данных','Снимок производства в формате JSON')+'<div class="setting-text"><p>Текущий источник: <b>'+(state.source==='synthetic'?'синтетическая модель':'импортированный снимок')+'</b>. Для демонстрации используйте готовый пример или загрузите снимок по описанной схеме.</p><p>Файл должен содержать четыре линии: <code>body</code>, <code>paint</code>, <code>assembly</code>, <code>logistics</code>. Все значения проверяются перед заменой данных. Максимальный размер — 1 МБ.</p></div><div class="report-actions"><label class="file-label">Загрузить JSON<input id="importFile" type="file" accept=".json,application/json" class="visually-hidden"></label><button class="control-btn" data-export="snapshot">Экспорт снимка</button><button class="control-btn" data-export="sample">Скачать пример</button></div><div id="importError" class="validation-error" role="alert"></div><div class="tip">Снимок сохраняется в этом браузере. После перезагрузки симуляция на паузе; история графиков и журнал начинают новую сессию. Кнопка «Сбросить» создаёт новую синтетическую смену.</div></section><section class="card section-card">'+header('Методика прогнозирования','Прозрачные расчёты, которые можно объяснить на защите')+'<div class="setting-text"><ul><li><b>До остановки:</b> буфер / (расход − подача) × 60 минут. При достаточной подаче остановка не прогнозируется.</li><li><b>Линейный тренд:</b> регрессия по последним 8 точкам буфера, минимум 3. После пополнения начинается новый ряд. R² показывает соответствие прямой наблюдаемым точкам.</li><li><b>Индекс риска:</b> 90/100 при горизонте ≤30 мин, 75 при ≤60, 55 при ≤120, 25 при большем дефиците и 8 при достаточной подаче. Остановленная сборка — 100.</li><li><b>Доступность:</b> 1 − суммарный простой / суммарное время наблюдения линий.</li></ul><p>Лес из 64 деревьев оценивает исчерпание буфера в ближайшие 60 минут. Он обучен на синтетических сменах с меняющейся подачей; калибровка и порог выбираются на отдельных сменах. На импортированных снимках ML-прогноз недоступен до обучения и оценки на данных предприятия. Поломки оборудования не входят в цель этой модели.</p></div></section></div>';
@@ -137,6 +166,7 @@
     const content=$('content'), focused=document.activeElement;
     const openDetails=new Set([...content.querySelectorAll('details[open]')].map(n=>n.className));
     const focusKey=content.contains(focused) ? {
+      id:focused.id,
       data:Object.entries(focused.dataset), tag:focused.tagName,
       disclosure:focused.tagName==='SUMMARY' ? focused.parentElement.className : null
     } : null;
@@ -156,7 +186,7 @@
     $('content').innerHTML=(filter!=='all'?'<p class="filter-note">Выбран участок: '+esc(E.ZONES[filter].name)+'. Прогноз сборки учитывает общую цепочку поставки.</p>':'')+views[page]();
     content.querySelectorAll('details').forEach(n=>{n.open=openDetails.has(n.className);});
     if(focusKey) {
-      const replacement=focusKey.disclosure
+      const replacement=focusKey.id ? $(focusKey.id) : focusKey.disclosure
         ? [...content.querySelectorAll('details')].find(n=>n.className===focusKey.disclosure)?.querySelector('summary')
         : [...content.querySelectorAll('button')].find(n=>focusKey.tag==='BUTTON' && focusKey.data.length && focusKey.data.every(([key,value])=>n.dataset[key]===value));
       if(replacement) replacement.focus({preventScroll:true});
@@ -175,6 +205,9 @@
     notify('Скачан файл '+name);
   }
   function exportData(type) {
+    if(type==='comparison') {
+      download('scenario-comparison.json',JSON.stringify(window.PlantScenarioAnalysis.compare(interventionMinute),null,2),'application/json');return;
+    }
     if(type==='snapshot'||type==='sample') {
       const snapshot=E.exportSnapshot(type==='sample'?E.createState('shortage'):state);
       download(type==='sample'?'sample-production.json':'production-snapshot.json',JSON.stringify(snapshot,null,2),'application/json');return;
@@ -217,6 +250,13 @@
     if(b.dataset.action==='repair-quality'){E.repairQuality(state);render();notify('Параметры окраски скорректированы');}
     if(b.dataset.action==='quality-scenario'){E.setScenario(state,'quality');render();notify('Включён сценарий дефектов окраски');}
     if(b.dataset.action==='print')window.print();
+  });
+  document.addEventListener('input',e=>{
+    if(e.target.id!=='interventionMinute')return;
+    interventionMinute=Number(e.target.value);
+    e.target.setAttribute('aria-valuetext','Через '+interventionMinute+' минут');
+    $('interventionValue').value=String(interventionMinute);
+    $('comparisonResults').innerHTML=comparisonResults();
   });
   $('play').addEventListener('click',()=>{state.running=!state.running;render();});
   $('step').addEventListener('click',()=>{E.tick(state,5);render();});
