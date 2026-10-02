@@ -1,0 +1,23 @@
+{
+  "scope": "Portable JavaScript forest and calibration against saved Python holdout predictions",
+  "results": [
+    {
+      "model": "buffer-risk",
+      "rows": 4443,
+      "probabilityTolerance": 1e-10,
+      "maxRawError": 1.1102230246251565e-16,
+      "maxProbabilityError": 4.107825191113079e-15,
+      "alertDecisionsMatch": true,
+      "alerts": 686
+    },
+    {
+      "model": "scania-aps",
+      "rows": 16000,
+      "probabilityTolerance": 1e-10,
+      "maxRawError": 5.551115123125783e-16,
+      "maxProbabilityError": 7.105427357601002e-14,
+      "alertDecisionsMatch": true,
+      "alerts": 872
+    }
+  ]
+}

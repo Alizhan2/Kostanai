@@ -99,6 +99,8 @@
     const drain = assembly.demandPerHour - assembly.replenishmentPerHour;
     const availableMinutes = drain > 0 ? Math.min(delta, assembly.buffer / drain * 60) : delta;
     assembly.buffer = clamp(assembly.buffer - drain * delta / 60, 0, 150);
+    // Repeated fractional steps can leave ~1e-15 kits at an exact depletion boundary.
+    if (drain > 0 && assembly.buffer < 1e-9) assembly.buffer = 0;
     state.elapsedMinutes += delta;
     state.lines.forEach((line, i) => {
       const multiplier = line.id === 'logistics' && state.scenario === 'shortage' ? 0.38

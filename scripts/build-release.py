@@ -25,6 +25,15 @@ source = (ROOT / "docs/presentation.html").read_text(encoding="utf-8")
 if "Перед сдачей добавить" in source:
     missing.append("presentationAuthors")
 
+verification_file = ROOT / "docs/verification/latest.json"
+verification = json.loads(verification_file.read_text()) if verification_file.exists() else {}
+version = json.loads((ROOT / "package.json").read_text())["version"]
+fingerprints = verification.get("sourceSha256", {})
+verification_matches = bool(fingerprints) and verification.get("version") == version and all(
+    (ROOT / name).is_file() and hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == digest
+    for name, digest in fingerprints.items()
+)
+
 def field(key, fallback):
     return team.get(key, "").strip() or fallback
 
@@ -72,11 +81,13 @@ with ZipFile(archive, "w", ZIP_DEFLATED) as bundle:
         files.append({"path": relative.as_posix(), "bytes": len(payload),
                       "sha256": hashlib.sha256(payload).hexdigest()})
 status = {"project": "Allur Plant Twin", "case": 2,
-          "version": json.loads((ROOT / "package.json").read_text())["version"],
+          "version": version,
           "readyToSubmit": not missing, "missing": missing,
           "repositoryPublishedByTeam": team["repositoryPublished"],
           "repositoryAvailabilityChecked": False,
-          "softwareTestsRunForThisUpdate": False,
+          "verificationMatchesCurrentSources": verification_matches,
+          "softwareTestsRunForThisUpdate": verification_matches and verification.get("engineTests", {}).get("passed", False),
+          "browserScenariosVerifiedForThisUpdate": verification_matches and verification.get("browser", {}).get("passed", False),
           "factoryTelemetryTrainingRun": False,
           "publicObservedBenchmarkTrainingRun": (ROOT / "ml/results/aps/report.json").exists(),
           "modelEvaluationSources": {"buffer": "synthetic", "APS_diagnosis": "public_observed_scania_aps"},

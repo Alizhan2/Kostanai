@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="aps-demo.css">
   <script src="../ml-features.js" defer></script><script src="../ml-runtime.js" defer></script>
   <script src="../models/aps-diagnostic.js" defer></script><script src="../aps-runtime.js" defer></script>
-  <script src="../data/aps-examples.js" defer></script><script src="aps-demo.js" defer></script>
+  <script src="../data/aps-examples.js" defer></script><script src="aps-demo.js?v=0.6.1" defer></script>
 </head>
 <body>
 <main class="aps-page">
@@ -28,6 +28,7 @@
       <label class="file-label">Загрузить JSON<input id="recordFile" type="file" accept=".json,application/json" class="visually-hidden"></label>
       <button class="control-btn" id="download">Скачать запись</button>
     </div>
+    <div id="recordError" class="validation-error" role="alert" hidden></div>
     <div id="result" class="aps-result" aria-live="polite"></div>
     <p class="small" id="reference"></p>
     <details><summary>Измерения выбранной записи</summary><div class="aps-table"><table><thead><tr><th>Признак</th><th>Значение</th></tr></thead><tbody id="features"></tbody></table></div></details>

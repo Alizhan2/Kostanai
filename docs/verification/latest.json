@@ -1,0 +1,94 @@
+{
+  "version": "0.6.1",
+  "verifiedAtUTC": "2026-10-02T19:58:27.804047+00:00",
+  "engineTests": {
+    "passed": true,
+    "count": 12,
+    "command": "npm test"
+  },
+  "syntaxChecks": {
+    "passed": true,
+    "count": 8,
+    "command": "npm run check"
+  },
+  "modelExport": {
+    "scope": "Portable JavaScript forest and calibration against saved Python holdout predictions",
+    "results": [
+      {
+        "model": "buffer-risk",
+        "rows": 4443,
+        "probabilityTolerance": 1e-10,
+        "maxRawError": 1.1102230246251565e-16,
+        "maxProbabilityError": 4.107825191113079e-15,
+        "alertDecisionsMatch": true,
+        "alerts": 686
+      },
+      {
+        "model": "scania-aps",
+        "rows": 16000,
+        "probabilityTolerance": 1e-10,
+        "maxRawError": 5.551115123125783e-16,
+        "maxProbabilityError": 7.105427357601002e-14,
+        "alertDecisionsMatch": true,
+        "alerts": 872
+      }
+    ]
+  },
+  "browser": {
+    "passed": true,
+    "engine": "Chromium",
+    "transport": "local HTTP",
+    "mobileWidth": 390,
+    "sectionsChecked": 6,
+    "scenarios": [
+      "APS example selection",
+      "invalid JSON preserves previous result",
+      "observation download/upload roundtrip",
+      "valid upload clears error",
+      "APS leaves plant state unchanged",
+      "exact 45-minute stop",
+      "downtime accumulation",
+      "refill resets model history",
+      "prediction returns after new observations"
+    ],
+    "javascriptErrors": 0,
+    "requiredAssetFailures": 0,
+    "externalRequests": 0
+  },
+  "limitations": [
+    "Factory telemetry absent; external CSV training route not exercised",
+    "file:// launch blocked by browser policy; local HTTP verified",
+    "No public deployment checked; team identity and repository publication pending"
+  ],
+  "sourceSha256": {
+    "package.json": "ef8b0a45de4c658448347fbc5a5e1d8d7cbf6262d9d8eee79c3dc689506defad",
+    "index.html": "c6479dea25916a0b14c83f677efda0e2a8291db527be9e438db74774e064ec4d",
+    "styles.css": "ecb900fc2c3b5a2ffa7ec80f004afef009b45f5b5a8007c4bd5b3a85549c8499",
+    "engine.js": "f660ba3d0c7d337696a0fc1b9932ee7beb12c6c920adc8f80f3cfdfff715e0d4",
+    "app.js": "7e2398233b2b86aaabcb3a2eee5e70163b7bf42d65139d70028f71f96817f4ff",
+    "ml-features.js": "3fcace9e9d5f33929287486cf4caf1fcc112307bfa3be1a3f9bf525da395035a",
+    "ml-runtime.js": "bd09f2e83f6a3a92c64898cef036a5667fe0fe9aa93cbf85f22e80cfba70f8b0",
+    "aps-runtime.js": "d8e75d11e9ddb4f04e25804c252b1ed61c98ee274e1473f55638ad4e80aa5f01",
+    "tests/engine.test.js": "1e1b650b714e18ad57eed636fbd667c374a0129c14c31f38338c4456f60ef21e",
+    "ml/prepare-telemetry.js": "8a889ed2ec0c716b0e0db7597b66e16cad02758faad4242ec938bbc476421e8c",
+    "scripts/verify-model-export.js": "9f1377a21c9e89a606be12ecaf3071103fb06e88f7f5ebc4f52e213fad785d3a",
+    "scripts/build-release.py": "1b81b6c2b5f9d84b9dae819987b7fc2a95803c50b90d0f873d6a904723bdb24f",
+    "docs/aps-demo.html": "3885cff89615d15cf02726587a23c9539fdde333b85c04819188ea199b9e3ffd",
+    "docs/aps-demo.css": "8422ce107cb671cc41ad5d9bb6895ab86ba87a725489f66f2e8d5f81acd932d1",
+    "docs/aps-demo.js": "13642fe245b902693e00c242d304360d82478925f9e1ac3eb19248ebdb1bed71",
+    "docs/verification/model-export.json": "463af358e033b34ac4fdd24f69546c612037c5f8a4b266ea59c87753fa274e9e",
+    "data/aps-summary.js": "6e97d619b1849807308899a428c5cdba91b86014a1404a83ca1bf5a60d01026c",
+    "data/aps-examples.js": "a05974fcbdb9b729698b61bbc031f9a2445e34c5382a94ae5d37ede99fd28535",
+    "data/aps-examples.json": "8e764f893086f4b9c417b8d37c848ea2ba38b561bbbf9887bffbb427ad9c6d5f",
+    "models/buffer-risk.js": "f78a2f371390a8defcf5ac24d2fd93aa46898f1dc2770c32e828605e2645cc8e",
+    "models/buffer-risk.json": "475420f80d4ccdb146576d67fa1a49d97e724d2c3a287e446ff49a7e200ac45c",
+    "models/aps-diagnostic.js": "0566013a955af79ab447b4968967a90daedcc002107b75d0c58be0c27bda1d07",
+    "models/aps-diagnostic.json": "a5ba73c2164ef286f454ee95061e06eb3cec37660810cc7c6320889344f49541",
+    "ml/data/training.csv": "1f3dd44feaa9c477425484b4cf5ae01cfd3fbcc2e65f8d82f1a8201901def7e2",
+    "ml/results/holdout-predictions.csv": "2fbe132ce0da9b0bb638153f4ea7fed461ca5ce391a830de3b8effeed27c7105",
+    "ml/results/aps/holdout-predictions.csv": "3328036956a5da93973ccaba043d57019baf9b75dca727ac5d763c65084f4621",
+    "ml/public/aps/aps_failure_test_set.csv": "2cdf6f7661c7b4c63333c93cdec36a3a82350176b604a2312cf82799fb2712f3",
+    "docs/presentation.html": "c4267aca5c80215f736d1a5d90dabc50066ddaf2d421f47066d04cecf591b3db",
+    "docs/presentation.pdf": "8ddab98976efdda65f2742ed376c23feb64f6592be0b8d9f5dde2e5a7eb8493f"
+  }
+}

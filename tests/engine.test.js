@@ -37,6 +37,24 @@ test('a step spanning the stop only produces for the time with inventory', () =>
   assert.ok(line.produced>39 && line.produced<60);
 });
 
+test('depletion status agrees at 45 minutes for single and fractional step partitions', () => {
+  for (const steps of [[45], [15,15,15], Array(9).fill(5)]) {
+    const state=E.createState('shortage');
+    steps.forEach(delta=>E.tick(state,delta));
+    const line=state.lines.find(l=>l.id==='assembly');
+    assert.equal(line.buffer,0);
+    assert.equal(line.status,'stopped');
+    assert.equal(line.throughput,0);
+    assert.equal(E.riskFor(line).score,100);
+    assert.ok(Math.abs(line.downtimeMinutes-2)<1e-9);
+    const produced=line.produced;
+    E.tick(state,5);
+    assert.equal(line.produced,produced);
+    assert.ok(Math.abs(line.downtimeMinutes-7)<1e-9);
+    assert.equal(state.incidents.filter(i=>i.type==='stop'&&i.status==='open').length,1);
+  }
+});
+
 test('replenishment restarts assembly, resolves incident, and clears obsolete trend', () => {
   const state=E.createState('shortage');
   E.tick(state,60);

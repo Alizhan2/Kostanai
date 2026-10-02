@@ -2,6 +2,7 @@
   'use strict';
   const model=window.PlantAPSModel,examples=window.PlantAPSExamples.examples;
   const select=document.getElementById('example'),output=document.getElementById('result');
+  const importError=document.getElementById('recordError');
   const percent=value=>(value*100).toLocaleString('ru-RU',{maximumFractionDigits:1})+'%';
   let current;
   const evaluation=model.evaluation;
@@ -18,6 +19,7 @@
   examples.forEach((record,index)=>{const option=document.createElement('option');option.value=index;option.textContent='Запись №'+record.id;select.append(option);});
   function show(record,knownReference){
     current=record;
+    importError.textContent='';importError.hidden=true;
     const result=window.PlantAPS.predict(record.features,model);
     output.replaceChildren();output.classList.toggle('alert',Boolean(result.alert));
     const heading=document.createElement('h3');
@@ -45,7 +47,11 @@
       const prediction=window.PlantAPS.predict(record&&record.features,model);
       if(!prediction.available)throw new Error(prediction.reason);
       select.value='';show(record,false);
-    }catch(error){output.replaceChildren();output.classList.remove('alert');output.textContent=error.message;document.getElementById('reference').textContent='Предыдущая выбранная запись сохранена.';}
+    }catch(error){
+      importError.textContent='Запись не загружена: '+(error instanceof SyntaxError?'некорректный JSON.':error.message)+
+        ' Предыдущая запись и результат сохранены.';
+      importError.hidden=false;
+    }
     event.target.value='';
   });
   document.getElementById('download').addEventListener('click',()=>{
