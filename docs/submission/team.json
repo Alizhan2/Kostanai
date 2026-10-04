@@ -1,12 +1,16 @@
 {
-  "teamName": "",
-  "institution": "",
-  "city": "",
-  "captain": "",
-  "member": "",
+  "teamName": "Zhubanov team",
+  "institution": "Жұбанов университеті",
+  "city": "Ақтөбе қаласы",
+  "captain": "Бижан Әлижан",
+  "member": "Қанымбек Марат, Құлтас Баубек",
   "recipientEmail": "",
   "repositoryUrl": "https://github.com/Alizhan2/Kostanai",
   "repositoryPublished": true,
   "presentationUrl": "https://github.com/Alizhan2/Kostanai/blob/main/docs/presentation.pdf",
-  "demoUrl": ""
+  "demoUrl": "",
+  "members": [
+    "Қанымбек Марат",
+    "Құлтас Баубек"
+  ]
 }

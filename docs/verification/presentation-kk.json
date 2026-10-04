@@ -1,0 +1,11 @@
+{
+  "language": "kk",
+  "slides": 10,
+  "teamSize": 3,
+  "realScreenshots": 5,
+  "pdfTextAndNamesPassed": true,
+  "layoutBoundsPassed": true,
+  "editablePowerPoint": true,
+  "interfaceLanguage": "ru",
+  "applicationTestsRerun": false
+}

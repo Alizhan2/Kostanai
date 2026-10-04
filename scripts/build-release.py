@@ -37,31 +37,35 @@ verification_matches = bool(fingerprints) and verification.get("version") == ver
 def field(key, fallback):
     return team.get(key, "").strip() or fallback
 
-email = f"""# Черновик письма — Qostanai AI Industry Hackathon 2026
+email = f"""# Хат жобасы — Qostanai AI Industry Hackathon 2026
 
-Кому: {field('recipientEmail', '[адрес организатора]')}
-Тема: Qostanai AI Industry Hackathon 2026 — кейс №2 — {field('teamName', '[название команды]')}
+Кімге: {field('recipientEmail', '[ұйымдастырушының мекенжайы]')}
+Тақырып: Qostanai AI Industry Hackathon 2026 — №2 кейс — {field('teamName', '[команда атауы]')}
 
-Здравствуйте!
+Сәлеметсіздер ме!
 
-Направляем решение кейса №2 «Цифровой двойник автомобильного завода», Allur — проект Allur Plant Twin.
+Allur компаниясының №2 «Автомобиль зауытының цифрлық егізі» кейсі бойынша Allur Plant Twin жобасын ұсынамыз.
 
-Учебное заведение: {field('institution', '[учебное заведение]')}
-Город: {field('city', '[город]')}
-Название команды: {field('teamName', '[название команды]')}
-Капитан: {field('captain', '[ФИО капитана]')}
-Участник: {field('member', '[ФИО второго участника]')}
-Репозиторий: {field('repositoryUrl', '[ссылка на опубликованный код]')}
-Презентация: {field('presentationUrl', 'PDF во вложении — Allur-Plant-Twin-presentation.pdf')}
+Оқу орны: {field('institution', '[оқу орны]')}
+Қала: {field('city', '[қала]')}
+Команда: {field('teamName', '[команда атауы]')}
+Кейс нөмірі: 2 — Allur
+Команда капитаны: {field('captain', '[капитанның аты-жөні]')}
+Қатысушылар: {field('member', '[қатысушылардың аты-жөні]')}
+Репозиторий: {field('repositoryUrl', '[код сілтемесі]')}
+Презентация: {field('presentationUrl', 'PDF тіркелген — Allur-Plant-Twin-presentation.pdf')}
 """
 if team.get("demoUrl", "").strip():
     email += f"Демонстрация: {team['demoUrl'].strip()}\n"
-email += "\nПроект демонстрирует производственные потоки, предупреждение остановки сборки и действия оператора. Заводская симуляция и модель буфера используют синтетические данные. Отдельная диагностическая модель обучена на открытых эксплуатационных данных Scania APS; её результаты не относятся к оборудованию Allur.\n\nС уважением,\n" + field("captain", "[ФИО капитана]") + "\n"
-email += "\n---\nСтатус: черновик, письмо не отправлено. Перед отправкой заполните авторов и проверьте ссылки на код и PDF.\n"
+email += "\nЖоба өндірістік ағындарды, жинақтау желісінің тоқтау қаупін және оператор әрекетін көрсетеді. Зауыт симуляциясы мен қор моделі синтетикалық деректерді пайдаланады. Бөлек диагностикалық модель Scania APS ашық деректерінде үйретілген; оның нәтижелері Allur жабдығына қатысты емес.\n\nҚұрметпен,\n" + field("captain", "[капитанның аты-жөні]") + "\n"
+email += "\n---\nМәртебе: хат жобасы, жіберілген жоқ. Жіберер алдында алушы мекенжайын енгізіп, код пен PDF сілтемелерін тексеріңіз.\n"
 (ROOT / "docs/submission/submission-email.md").write_text(email, encoding="utf-8")
 dist = ROOT / "dist"
 dist.mkdir(exist_ok=True)
 shutil.copyfile(presentation, dist / "Allur-Plant-Twin-presentation.pdf")
+powerpoint = ROOT / "docs/presentation-kk.pptx"
+if powerpoint.is_file():
+    shutil.copyfile(powerpoint, dist / "Allur-Plant-Twin-presentation-kk.pptx")
 shutil.copyfile(ROOT / "docs/submission/submission-email.md", dist / "submission-email.md")
 excluded = {".git", ".venv", "node_modules", "__pycache__", "dist", ".web-static"}
 files = []
