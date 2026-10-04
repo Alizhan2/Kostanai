@@ -67,7 +67,7 @@ powerpoint = ROOT / "docs/presentation-kk.pptx"
 if powerpoint.is_file():
     shutil.copyfile(powerpoint, dist / "Allur-Plant-Twin-presentation-kk.pptx")
 shutil.copyfile(ROOT / "docs/submission/submission-email.md", dist / "submission-email.md")
-excluded = {".git", ".venv", "node_modules", "__pycache__", "dist", ".web-static"}
+excluded = {".git", ".venv", "node_modules", "__pycache__", "dist", ".web-static", ".test-results"}
 files = []
 archive = dist / "Allur-Plant-Twin.zip"
 with ZipFile(archive, "w", ZIP_DEFLATED) as bundle:

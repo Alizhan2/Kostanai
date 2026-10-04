@@ -6,6 +6,7 @@ __pycache__/
 ml/local/
 dist/
 .web-static/
+.test-results/
 .env
 .env.*
 !.env.example

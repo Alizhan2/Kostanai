@@ -3,7 +3,10 @@ import argparse, json, subprocess, re
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 R=Path(__file__).resolve().parents[1]; checks=[]
-parser=argparse.ArgumentParser(); parser.add_argument('--url',default='http://localhost:4173'); args=parser.parse_args()
+parser=argparse.ArgumentParser(); parser.add_argument('--url',default='http://localhost:4173'); parser.add_argument('--output-dir',default=str(R/'docs')); args=parser.parse_args()
+output_dir=Path(args.output_dir).resolve(); output_dir.mkdir(parents=True,exist_ok=True)
+(output_dir/'verification').mkdir(exist_ok=True)
+downloads=output_dir/'downloads'; downloads.mkdir(exist_ok=True)
 def passed(name): checks.append(name)
 with sync_playwright() as p:
  browser=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox','--disable-dev-shm-usage'])
@@ -11,9 +14,9 @@ with sync_playwright() as p:
  page=context.new_page(); errors=[]; page.on('pageerror',lambda e:errors.append(str(e))); page.on('console',lambda m:errors.append(m.text) if m.type=='error' else None)
  page.goto(args.url); expect(page.get_by_role('heading',name='Обзор производства',exact=True)).to_be_visible()
  expect(page.get_by_text('45 мин',exact=True)).to_be_visible(); passed('Production React bundle renders, initial horizon 45 minutes')
- page.screenshot(path=str(R/'docs/react-desktop.png'),full_page=True)
- page.screenshot(path=str(R/'docs/react-preview.png'))
- page.locator('.content-grid').screenshot(path=str(R/'docs/react-process-risk.png'))
+ page.screenshot(path=str(output_dir/'react-desktop.png'),full_page=True)
+ page.screenshot(path=str(output_dir/'react-preview.png'))
+ page.locator('.content-grid').screenshot(path=str(output_dir/'react-process-risk.png'))
  for i in range(9): page.get_by_role('button',name='+5 мин',exact=True).click()
  expect(page.get_by_text('Остановка',exact=True)).to_be_visible()
  page.get_by_role('button',name='+5 мин',exact=True).click()
@@ -41,11 +44,11 @@ with sync_playwright() as p:
  page.locator('#hourly-downtime-cost').fill('-1'); expect(page.get_by_role('alert')).to_contain_text('Стоимость'); expect(page.locator('.cost-metrics')).not_to_be_visible()
  page.locator('#hourly-downtime-cost').fill('100000'); page.get_by_role('slider').fill('120'); assert cost_values()==['0₸','0₸','0₸']
  page.get_by_role('slider').fill('60'); page.get_by_role('button',name='Линии',exact=True).click(); page.get_by_role('button',name='Отчёты',exact=True).click(); expect(page.locator('#hourly-downtime-cost')).to_have_value('100000')
- page.locator('.cost-evaluation').screenshot(path=str(R/'docs/economics-desktop.png'))
+ page.locator('.cost-evaluation').screenshot(path=str(output_dir/'economics-desktop.png'))
  passed('Cost assumptions start empty; early and late actions match known balances; no fee outside horizon; negative costs rejected; values retained on navigation')
  for button,kind in [('Скачать CSV','csv'),('Отчёт TXT','txt'),('Снимок JSON','json'),('Скачать сравнение JSON','comparison')]:
   with page.expect_download() as d: page.get_by_role('button',name=button,exact=True).click()
-  download=d.value; dest=Path('/tmp/react-'+kind); download.save_as(dest); payload=dest.read_text(encoding='utf-8-sig'); assert payload.strip()
+  download=d.value; dest=downloads/('react-'+kind); download.save_as(dest); payload=dest.read_text(encoding='utf-8-sig'); assert payload.strip()
   if kind=='json': assert len(json.loads(payload)['lines'])==4
   if kind=='comparison': assert json.loads(payload)['interventionAfterMinutes']==60 and json.loads(payload)['economicEvaluation']['netEffect']==80000
  passed('CSV, TXT, snapshot JSON and comparison JSON downloads contain data')
@@ -69,7 +72,7 @@ with sync_playwright() as p:
  page.get_by_role('button',name='Источники',exact=True).click(); expect(page.get_by_role('heading',name='Подтверждено в официальном кейсе',exact=True)).to_be_visible()
  assert page.locator('.fact-card').count()==10
  with page.expect_download() as d: page.get_by_role('button',name='Скачать каталог источников',exact=True).click()
- d.value.save_as('/tmp/react-sources.json'); sources=json.loads(Path('/tmp/react-sources.json').read_text()); assert sources['businessMetrics']['annualCapacity'] is None
+ d.value.save_as(str(downloads/'react-sources.json')); sources=json.loads((downloads/'react-sources.json').read_text()); assert sources['businessMetrics']['annualCapacity'] is None
  passed('Source catalog separates case facts, unknown company metrics and simulation')
  page.get_by_role('button',name='Настройки',exact=True).click()
  before=page.evaluate("localStorage.getItem('allur-twin-v1')")
@@ -78,11 +81,11 @@ with sync_playwright() as p:
  page.locator('#production-import').set_input_files({'name':'large.csv','mimeType':'text/csv','buffer':b'x'*(1024*1024+1)})
  expect(page.get_by_role('alert')).to_contain_text('Размер файла'); assert page.evaluate("localStorage.getItem('allur-twin-v1')")==before
  with page.expect_download() as d: page.get_by_role('button',name='Экспорт снимка CSV',exact=True).click()
- d.value.save_as('/tmp/react-snapshot.csv'); page.locator('#production-import').set_input_files('/tmp/react-snapshot.csv')
+ d.value.save_as(str(downloads/'react-snapshot.csv')); page.locator('#production-import').set_input_files(str(downloads/'react-snapshot.csv'))
  expect(page.get_by_role('alert')).to_have_count(0)
  restored=json.loads(page.evaluate("localStorage.getItem('allur-twin-v1')")); assert restored['snapshot']==json.loads(before)['snapshot'] and restored['source']=='imported'
  with page.expect_download() as d: page.get_by_role('button',name='Скачать пример CSV',exact=True).click()
- d.value.save_as('/tmp/react-sample.csv'); page.locator('#production-import').set_input_files('/tmp/react-sample.csv')
+ d.value.save_as(str(downloads/'react-sample.csv')); page.locator('#production-import').set_input_files(str(downloads/'react-sample.csv'))
  expect(page.get_by_role('alert')).to_have_count(0); page.wait_for_function("JSON.parse(localStorage.getItem('allur-twin-v1')).snapshot.elapsedMinutes === 120")
  passed('Malformed and oversized CSV preserve shift; CSV snapshot round-trips equipment stops; downloadable CSV sample imports successfully')
  for viewport in [{'width':390,'height':844},{'width':768,'height':1024},{'width':1440,'height':1000}]:
@@ -91,8 +94,8 @@ with sync_playwright() as p:
    page.locator('nav').get_by_role('button',name=nav,exact=nav!='Инциденты').click()
    assert page.evaluate('document.documentElement.scrollWidth <= innerWidth+1'), (viewport,nav)
   if viewport['width']==390:
-   page.get_by_role('button',name='Отчёты',exact=True).click(); page.locator('#hourly-downtime-cost').fill('1000000000'); page.locator('#intervention-cost').fill('1000000000'); assert page.evaluate('document.documentElement.scrollWidth <= innerWidth+1'); page.locator('#hourly-downtime-cost').fill('100000'); page.locator('#intervention-cost').fill('20000'); page.get_by_role('slider').fill('60'); page.locator('.cost-evaluation').screenshot(path=str(R/'docs/economics-mobile.png'))
-   page.get_by_role('button',name='Настройки',exact=True).click(); page.get_by_role('button',name='Создать новую демосмену',exact=True).click(); page.get_by_role('button',name='Обзор',exact=True).click(); expect(page.locator('.toast')).not_to_be_visible(timeout=6000); page.screenshot(path=str(R/'docs/react-mobile.png'),full_page=True)
+   page.get_by_role('button',name='Отчёты',exact=True).click(); page.locator('#hourly-downtime-cost').fill('1000000000'); page.locator('#intervention-cost').fill('1000000000'); assert page.evaluate('document.documentElement.scrollWidth <= innerWidth+1'); page.locator('#hourly-downtime-cost').fill('100000'); page.locator('#intervention-cost').fill('20000'); page.get_by_role('slider').fill('60'); page.locator('.cost-evaluation').screenshot(path=str(output_dir/'economics-mobile.png'))
+   page.get_by_role('button',name='Настройки',exact=True).click(); page.get_by_role('button',name='Создать новую демосмену',exact=True).click(); page.get_by_role('button',name='Обзор',exact=True).click(); expect(page.locator('.toast')).not_to_be_visible(timeout=6000); page.screenshot(path=str(output_dir/'react-mobile.png'),full_page=True)
  passed('All seven pages fit 390, 768 and 1440 pixel viewports without page overflow')
  page.get_by_role('button',name='Обзор',exact=True).click()
  start=json.loads(page.evaluate("localStorage.getItem('allur-twin-v1')"))['snapshot']['elapsedMinutes']
@@ -111,5 +114,5 @@ with sync_playwright() as p:
  assert not errors,errors
  passed('No browser runtime errors')
  browser.close()
-(R/'docs/verification/react-browser.json').write_text(json.dumps({'passed':True,'checks':checks,'errors':errors},ensure_ascii=False,indent=2))
+(output_dir/'verification/react-browser.json').write_text(json.dumps({'passed':True,'checks':checks,'errors':errors},ensure_ascii=False,indent=2))
 print(json.dumps({'passed':True,'checks':checks},ensure_ascii=False,indent=2))

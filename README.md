@@ -144,3 +144,15 @@ npm run compare
 10 слайдов с реальными скриншотами прототипа: [PDF](docs/presentation.pdf), [редактируемый PowerPoint](docs/presentation-kk.pptx), [Canva](https://www.canva.com/d/fx5j_8Sc1eKd2Ze), [текст защиты на 3 минуты](docs/presentation-notes-kk.md). Капитан — Бижан Әлижан; участники — Қанымбек Марат и Құлтас Баубек. Жұбанов университеті, Ақтөбе қаласы.
 
 Презентация пересобирается командой `python scripts/render-presentation.py`; флаг `--capture` обновляет скриншоты готового приложения. Нужны Python Playwright, Chromium, python-pptx, Pillow и PyMuPDF. Canva-дизайн создан импортом PPTX; его ссылки сохранены в `docs/submission/canva.json`.
+
+## Отдельный проверочный файл
+
+`test-project.py` запускает тесты, сверяет модели, проверяет готовую сборку и презентацию.
+
+```sh
+python3 test-project.py
+# Полная проверка с пересборкой и Chromium:
+python3 test-project.py --build --browser
+```
+
+Также доступно `npm run test:project`. Результаты и логи: `.test-results/latest.json` и `.test-results/`. Для браузера нужны Python Playwright и `/usr/bin/chromium`, для проверки текста PDF — pypdf. Пропуски помечаются отдельно, сбой возвращает код 1. [Инструкция](docs/test-project.md).

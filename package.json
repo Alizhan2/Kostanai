@@ -6,6 +6,7 @@
   "scripts": {
     "start": "python3 -m http.server 8000 --bind 0.0.0.0 --directory site",
     "test": "node --test tests/*.test.js",
+    "test:project": "python3 test-project.py",
     "check": "node --check engine.js && node --check scripts/prepare-web.cjs && node --check ml-features.js && node --check ml-runtime.js && node --check aps-runtime.js && node --check docs/aps-demo.js && node --check ml/prepare-telemetry.js && node --check scripts/verify-model-export.js && node --check scenario-analysis.js && node --check decision-analysis.js && node --check src/lib/production-csv.mjs",
     "verify:models": "node scripts/verify-model-export.js",
     "compare": "node scripts/compare-scenarios.js",

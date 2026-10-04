@@ -48,6 +48,8 @@ const apsPairs=csv('ml/results/aps/holdout-predictions.csv').map(expected=>{
 });
 const report={scope:'Portable JavaScript forest and calibration against saved Python holdout predictions',
   results:[compare('buffer-risk',buffer,bufferPairs),compare('scania-aps',aps,apsPairs)]};
-const output=path.join(ROOT,'docs/verification/model-export.json');
+const outputIndex=process.argv.indexOf('--output');
+assert(outputIndex<0||process.argv[outputIndex+1],'--output requires a file path');
+const output=outputIndex<0?path.join(ROOT,'docs/verification/model-export.json'):path.resolve(process.argv[outputIndex+1]);
 fs.mkdirSync(path.dirname(output),{recursive:true});fs.writeFileSync(output,JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify(report,null,2));

@@ -1,0 +1,109 @@
+{
+  "passed": true,
+  "checkedAtUTC": "2026-10-04T15:09:55.070774+00:00",
+  "version": "0.9.0",
+  "checks": [
+    {
+      "name": "Среда",
+      "status": "passed",
+      "details": "Node.js, npm и зависимости доступны",
+      "seconds": 0.0
+    },
+    {
+      "name": "Расчёты, CSV и экономика",
+      "status": "passed",
+      "details": {
+        "passed": 26,
+        "total": 26
+      },
+      "seconds": 0.29
+    },
+    {
+      "name": "Синтаксис JavaScript",
+      "status": "passed",
+      "details": {
+        "command": "npm run check",
+        "exitCode": 0
+      },
+      "seconds": 0.39
+    },
+    {
+      "name": "Пересборка React",
+      "status": "passed",
+      "details": {
+        "command": "npm run build",
+        "exitCode": 0
+      },
+      "seconds": 0.58
+    },
+    {
+      "name": "Перенос моделей",
+      "status": "passed",
+      "details": {
+        "rows": 20443,
+        "scope": "JS против сохранённых Python-предсказаний; без обучения"
+      },
+      "seconds": 0.94
+    },
+    {
+      "name": "Файлы готовой сборки",
+      "status": "passed",
+      "details": {
+        "entryAssets": 6,
+        "cssAssets": 4,
+        "documentCopiesMatch": true,
+        "scope": "Файлы и ссылки сборки; для интерфейса используйте --browser"
+      },
+      "seconds": 0.0
+    },
+    {
+      "name": "Команда, скриншоты и PowerPoint",
+      "status": "passed",
+      "details": {
+        "language": "kk",
+        "slides": 10,
+        "screenshots": 5,
+        "teamSize": 3,
+        "editablePptxTextChecked": true
+      },
+      "seconds": 0.01
+    },
+    {
+      "name": "Текст и страницы PDF",
+      "status": "passed",
+      "details": {
+        "pages": 10,
+        "kazakhNamesChecked": true
+      },
+      "seconds": 0.12
+    },
+    {
+      "name": "Интерфейс Chromium",
+      "status": "passed",
+      "details": {
+        "groups": 17,
+        "errors": [],
+        "viewports": [
+          390,
+          768,
+          1440
+        ]
+      },
+      "seconds": 18.36
+    }
+  ],
+  "warnings": [
+    "Регистрация, право участия и отправка материалов этим файлом не проверяются.",
+    "Заводская симуляция синтетическая; промышленная применимость и экономия Allur не проверяются.",
+    "Адрес получателя заявки ещё не заполнен."
+  ],
+  "factoryTelemetryTrainingRun": false,
+  "sourceSha256": {
+    "test-project.py": "ace5eb031847d725b1f0107b8f51ddb3af55b873a306b18dc2301f2223470b86",
+    "package.json": "3712eb358282f31c94c7683ca06378b395beabbe27a25f3ab7c86f2296786105",
+    "engine.js": "94a569f7259af412084fa76db31fc50981584a23d56abd45dda9ad67773f0465",
+    "decision-analysis.js": "7ca09b59e9b10053e1e2555ecf1f695f37411b30caca80479a8280e9cb1fc045",
+    "src/lib/production-csv.mjs": "db045f80d508ee537843f90aff692791dd30847819f5beed0b51d24aabcbf9af",
+    "docs/presentation.pdf": "a427466b114b961bd62a9bfe312172d3e964238c470569d93d38824b47ffa189"
+  }
+}
