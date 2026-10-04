@@ -1,45 +1,46 @@
 {
   "repositoryUrl": "https://github.com/Alizhan2/Kostanai",
   "branch": "main",
-  "version": "0.8.0",
-  "verifiedSourceCommit": "5c641c1f66f737d20d09e63f52480b35fadda62f",
-  "checkedAtUTC": "2026-10-02T20:54:17.450803+00:00",
+  "version": "0.9.0",
+  "verifiedSourceCommit": "c54d2e808270093212d9a01f46f7d072335907ca",
+  "checkedAtUTC": "2026-10-04T11:11:12.587576+00:00",
+  "checkedClientDate": "2026-10-04",
   "publicAnonymousReadsPassed": true,
   "checks": [
     {
       "path": "README.md",
       "status": 200,
-      "sha256": "7869d1728af70615fd8a012d8056682d49374e0eeb74f3510473ce4a45668b6e"
+      "sha256": "23229f4522a8b9be0cc6612b7573d12e27a212907d0c00808677f15485c7eb85"
     },
     {
       "path": "package.json",
       "status": 200,
-      "sha256": "4f29321c38fd281565c589096b737212e17a3551b20ba7291a5d603612efa584"
+      "sha256": "50db72d5f62beb729a79144c37425597e3090559e5591ee52a28d83b6381afae"
     },
     {
-      "path": "src/App.jsx",
+      "path": "src/components/CostEvaluation.jsx",
       "status": 200,
-      "sha256": "081faa170de2c4548b51ed057c7b85eda5204a60bdbf6bb202a22555c939fe82"
+      "sha256": "48f2937b170db4d71c24c6306f77b5c9f41b53da9a3e56ad9b78343fb745336a"
     },
     {
-      "path": "data/allur-public.json",
+      "path": "src/lib/production-csv.mjs",
       "status": 200,
-      "sha256": "0224355dae36364d04cec5531e1440098626015fe79d334f3fb212cf096cfa58"
+      "sha256": "db045f80d508ee537843f90aff692791dd30847819f5beed0b51d24aabcbf9af"
     },
     {
-      "path": "site/index.html",
+      "path": "docs/market-analysis.md",
       "status": 200,
-      "sha256": "bac6edf97c5a05231dbed321e5aae114b72f62f514fe9797fbc83d18d1cabf61"
+      "sha256": "bcff469743d7fa02d94f92fbf776946aae9390efe1868520130ed28cb0e88a6f"
     },
     {
       "path": "docs/presentation.pdf",
       "status": 200,
-      "sha256": "0eece265be60a1e7412d2ed982a90f5edc7c9e75c657b3fc0c078ca7968f38f5"
+      "sha256": "68b6320455b79646af0a381f12816646b428bb6270f0caa0af5d79b284290860"
     },
     {
-      "path": "docs/technical-description.md",
+      "path": "site/index.html",
       "status": 200,
-      "sha256": "526f9272ff55a15953f6d24565e13070e89cb3a08cfbced15a0d16deb72e0b7b"
+      "sha256": "b988632561e94c9d5de812b92d2de919c04c46ff7ed89173f3c084e4a6b2c169"
     }
   ],
   "limitations": [
