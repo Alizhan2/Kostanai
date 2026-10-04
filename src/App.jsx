@@ -75,6 +75,10 @@ export default function App() {
   const [speed, setSpeed] = useState(1);
   const [notice, setNotice] = useState("");
   const [comparisonMinute, setComparisonMinute] = useState(30);
+  const [costAssumptions, setCostAssumptions] = useState({
+    hourly: "",
+    action: "",
+  });
   const mutate = useCallback(
     (operation) =>
       setState((previous) => {
@@ -510,6 +514,8 @@ export default function App() {
               mlPrediction={prediction}
               interventionMinute={comparisonMinute}
               onInterventionChange={setComparisonMinute}
+              costAssumptions={costAssumptions}
+              onCostChange={setCostAssumptions}
             />
           ) : null}
           {page === "sources" ? <SourcesPage /> : null}

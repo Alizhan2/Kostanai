@@ -1,0 +1,109 @@
+{
+  "checkedDate": "2026-10-04",
+  "dateTimeZone": "Asia/Oral",
+  "scope": "Qualitative comparison of documented capabilities; no market share, pricing or field benchmark verified",
+  "repositories": [
+    {
+      "name": "thingsboard/thingsboard",
+      "defaultBranch": "master",
+      "description": "All-in-one IoT Platform - Device management, data collection, processing and visualization.",
+      "license": "BUSL-1.1",
+      "archived": false,
+      "pushedAt": "2026-10-02T16:20:50Z",
+      "htmlUrl": "https://github.com/thingsboard/thingsboard",
+      "commit": {
+        "sha": "0439df09f31b0e8101b9f0a6be556c087d86818d",
+        "url": "https://github.com/thingsboard/thingsboard/commit/0439df09f31b0e8101b9f0a6be556c087d86818d",
+        "date": "2026-10-02T16:20:50Z"
+      },
+      "readmeUrl": "https://github.com/thingsboard/thingsboard/blob/0439df09f31b0e8101b9f0a6be556c087d86818d/README.md",
+      "readmeModifiedDate": "2026-09-29T09:41:52Z",
+      "quotes": [
+        "* Build real-time dashboards",
+        "* Define thresholds and trigger alarms"
+      ],
+      "licenseUrl": "https://github.com/thingsboard/thingsboard/blob/0439df09f31b0e8101b9f0a6be556c087d86818d/LICENSE",
+      "licenseNote": "Version 4.4 and later are source-available under BUSL; earlier releases used Apache-2.0."
+    },
+    {
+      "name": "eclipse-ditto/ditto",
+      "defaultBranch": "master",
+      "description": "Eclipse Ditto™: Digital Twin framework of Eclipse IoT - main repository",
+      "license": "EPL-2.0",
+      "archived": false,
+      "pushedAt": "2026-10-02T14:02:54Z",
+      "htmlUrl": "https://github.com/eclipse-ditto/ditto",
+      "commit": {
+        "sha": "b91dcd99e7e665e4b7c8543fcd3cda5507b0c9c0",
+        "url": "https://github.com/eclipse-ditto/ditto/commit/b91dcd99e7e665e4b7c8543fcd3cda5507b0c9c0",
+        "date": "2026-10-02T14:02:54Z"
+      },
+      "readmeUrl": "https://github.com/eclipse-ditto/ditto/blob/b91dcd99e7e665e4b7c8543fcd3cda5507b0c9c0/README.md",
+      "readmeModifiedDate": "2026-05-11T08:27:46Z",
+      "quotes": [
+        "[Eclipse Ditto](https://www.eclipse.dev/ditto/)™ is a technology in the IoT implementing a software pattern called “digital twins”."
+      ]
+    },
+    {
+      "name": "grafana/grafana",
+      "defaultBranch": "main",
+      "description": "The open and composable observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres and many more. ",
+      "license": "AGPL-3.0",
+      "archived": false,
+      "pushedAt": "2026-10-04T10:53:45Z",
+      "htmlUrl": "https://github.com/grafana/grafana",
+      "commit": {
+        "sha": "b3fb81a13abde982b181fd1116cf8982bd07b6c6",
+        "url": "https://github.com/grafana/grafana/commit/b3fb81a13abde982b181fd1116cf8982bd07b6c6",
+        "date": "2026-10-04T06:34:42Z"
+      },
+      "readmeUrl": "https://github.com/grafana/grafana/blob/b3fb81a13abde982b181fd1116cf8982bd07b6c6/README.md",
+      "readmeModifiedDate": "2026-07-29T13:26:57Z",
+      "quotes": [
+        "- **Dynamic Dashboards:** Create dynamic & reusable dashboards with template variables that appear as dropdowns at the top of the dashboard.",
+        "- **Explore Metrics:** Explore your data through ad-hoc queries and dynamic drilldown. Split view and compare different time ranges, queries and data sources side by side."
+      ]
+    },
+    {
+      "name": "node-red/node-red",
+      "defaultBranch": "main",
+      "description": "Low-code programming for event-driven applications",
+      "license": "Apache-2.0",
+      "archived": false,
+      "pushedAt": "2026-10-01T19:16:26Z",
+      "htmlUrl": "https://github.com/node-red/node-red",
+      "commit": {
+        "sha": "cd05a9a38b797b790b2781619f85ee6ee129283c",
+        "url": "https://github.com/node-red/node-red/commit/cd05a9a38b797b790b2781619f85ee6ee129283c",
+        "date": "2026-10-01T19:16:26Z"
+      },
+      "readmeUrl": "https://github.com/node-red/node-red/blob/cd05a9a38b797b790b2781619f85ee6ee129283c/README.md",
+      "readmeModifiedDate": "2026-08-14T09:37:45Z",
+      "quotes": [
+        "### Low-code programming for event-driven applications"
+      ]
+    },
+    {
+      "name": "mholt/PapaParse",
+      "defaultBranch": "master",
+      "description": "Fast and powerful CSV (delimited text) parser that gracefully handles large files and malformed input",
+      "license": "MIT",
+      "archived": false,
+      "pushedAt": "2026-09-15T14:56:44Z",
+      "htmlUrl": "https://github.com/mholt/PapaParse",
+      "commit": {
+        "sha": "4843fc2021bbe04bdc176e71f4c9f8f8388af7bc",
+        "url": "https://github.com/mholt/PapaParse/commit/4843fc2021bbe04bdc176e71f4c9f8f8388af7bc",
+        "date": "2026-09-15T14:56:44Z"
+      },
+      "readmeUrl": "https://github.com/mholt/PapaParse/blob/4843fc2021bbe04bdc176e71f4c9f8f8388af7bc/README.md",
+      "readmeModifiedDate": "2026-08-24T14:31:26Z",
+      "quotes": [
+        "- Auto-detect delimiter",
+        "- Header row support",
+        "- One of the only parsers that correctly handles line-breaks and quotations",
+        "Papa Parse has **no dependencies**."
+      ]
+    }
+  ]
+}

@@ -1,5 +1,11 @@
+import { parseProductionCSV, snapshotToCSV } from "../lib/production-csv.mjs";
 import { useState } from "react";
-import { downloadJSON, exportSnapshot, sourceLabel } from "../lib/exports.js";
+import {
+  downloadJSON,
+  downloadText,
+  exportSnapshot,
+  sourceLabel,
+} from "../lib/exports.js";
 
 export default function SettingsPage({
   state,
@@ -20,7 +26,10 @@ export default function SettingsPage({
     try {
       if (file.size > 1024 * 1024)
         throw new Error("Размер файла превышает 1 МБ.");
-      const data = JSON.parse(await file.text());
+      const text = await file.text();
+      const data = /\.csv$/i.test(file.name)
+        ? parseProductionCSV(text)
+        : JSON.parse(text);
       const candidate = engine.validateImport(data);
       onImport(candidate);
       onNotice?.("Снимок загружен. Симуляция на паузе.");
@@ -46,7 +55,7 @@ export default function SettingsPage({
             <div>
               <h2 className="panel-title">Источник данных</h2>
               <p className="panel-subtitle">
-                Снимок производства в формате JSON
+                Снимок производства · JSON или CSV
               </p>
             </div>
           </div>
@@ -64,16 +73,20 @@ export default function SettingsPage({
             перед заменой смены.
           </p>
           <div className="field">
-            <label htmlFor="production-import">Загрузить снимок JSON</label>
+            <label htmlFor="production-import">
+              Загрузить снимок JSON или CSV
+            </label>
             <input
               id="production-import"
               type="file"
-              accept=".json,application/json"
+              accept=".json,.csv,application/json,text/csv"
               onChange={importFile}
               disabled={importing}
               aria-describedby="production-import-help"
             />
             <p id="production-import-help" className="form-hint">
+              CSV: четыре строки по шаблону, разделитель — запятая, точка с
+              запятой или табуляция. Время и смена одинаковые во всех строках.
               Максимум 1 МБ. После загрузки симуляция на паузе, история
               начинается с новой точки.
             </p>
@@ -90,6 +103,32 @@ export default function SettingsPage({
               onClick={() => exportSnapshot(state, engine)}
             >
               Экспорт снимка
+            </button>
+            <button
+              className="button button-secondary"
+              onClick={() =>
+                downloadText(
+                  "production-snapshot.csv",
+                  snapshotToCSV(engine.exportSnapshot(state)),
+                  "text/csv;charset=utf-8",
+                )
+              }
+            >
+              Экспорт снимка CSV
+            </button>
+            <button
+              className="button button-secondary"
+              onClick={() =>
+                downloadText(
+                  "sample-production.csv",
+                  snapshotToCSV(
+                    engine.exportSnapshot(engine.createState("shortage")),
+                  ),
+                  "text/csv;charset=utf-8",
+                )
+              }
+            >
+              Скачать пример CSV
             </button>
             <button
               className="button button-secondary"
@@ -115,7 +154,7 @@ export default function SettingsPage({
           </div>
           <p>
             Снимок сохраняется локально. После перезагрузки симуляция находится
-            на паузе. Экспорт JSON содержит состояние линий; журнал и
+            на паузе. Экспорт JSON или CSV содержит состояние линий; журнал и
             исторические ряды в этот формат не входят.
           </p>
           <p className="info-note">

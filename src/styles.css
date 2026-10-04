@@ -2238,3 +2238,34 @@ dialog.dialog::backdrop {
   font-weight: 400;
   color: var(--muted);
 }
+.cost-evaluation {
+  margin: 24px 0;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-subtle);
+}
+.cost-evaluation h3 {
+  margin-bottom: 8px;
+}
+.cost-evaluation > .two-column {
+  margin: 18px 0;
+}
+.cost-metrics {
+  margin-bottom: 14px;
+}
+.cost-metrics .metric-pair > strong:first-child {
+  overflow-wrap: anywhere;
+  font-size: clamp(20px, 2vw, 28px);
+}
+.cost-metrics .cost-positive > strong:first-child {
+  color: var(--success);
+}
+.cost-metrics .cost-negative > strong:first-child {
+  color: var(--danger);
+}
+@media (max-width: 767px) {
+  .cost-evaluation {
+    padding: 16px;
+  }
+}

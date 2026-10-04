@@ -1,12 +1,12 @@
 {
   "name": "allur-plant-twin",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "private": true,
   "description": "React production digital twin prototype with source provenance for Qostanai AI Industry Hackathon 2026",
   "scripts": {
     "start": "python3 -m http.server 8000 --bind 0.0.0.0 --directory site",
     "test": "node --test tests/*.test.js",
-    "check": "node --check engine.js && node --check scripts/prepare-web.cjs && node --check ml-features.js && node --check ml-runtime.js && node --check aps-runtime.js && node --check docs/aps-demo.js && node --check ml/prepare-telemetry.js && node --check scripts/verify-model-export.js && node --check scenario-analysis.js",
+    "check": "node --check engine.js && node --check scripts/prepare-web.cjs && node --check ml-features.js && node --check ml-runtime.js && node --check aps-runtime.js && node --check docs/aps-demo.js && node --check ml/prepare-telemetry.js && node --check scripts/verify-model-export.js && node --check scenario-analysis.js && node --check decision-analysis.js && node --check src/lib/production-csv.mjs",
     "verify:models": "node scripts/verify-model-export.js",
     "compare": "node scripts/compare-scenarios.js",
     "ml:data": "node ml/generate-data.js",
@@ -23,6 +23,7 @@
     "prepare:web": "node scripts/prepare-web.cjs"
   },
   "dependencies": {
+    "papaparse": "5.5.3",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },

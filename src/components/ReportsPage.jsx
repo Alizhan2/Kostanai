@@ -1,3 +1,5 @@
+import { decisions } from "../lib/runtime.js";
+import CostEvaluation from "./CostEvaluation.jsx";
 import { useId, useMemo } from "react";
 import {
   downloadJSON,
@@ -102,6 +104,8 @@ export default function ReportsPage({
   mlPrediction,
   interventionMinute,
   onInterventionChange,
+  costAssumptions,
+  onCostChange,
 }) {
   const sliderId = useId();
   const helpId = useId();
@@ -109,6 +113,25 @@ export default function ReportsPage({
     () => analysis?.compare(interventionMinute),
     [analysis, interventionMinute],
   );
+  const financial = useMemo(() => {
+    if (
+      !result ||
+      costAssumptions.hourly.trim() === "" ||
+      costAssumptions.action.trim() === ""
+    )
+      return { value: null, error: "" };
+    try {
+      return {
+        value: decisions.economicEffect(result, {
+          downtimeCostPerHour: Number(costAssumptions.hourly),
+          interventionCost: Number(costAssumptions.action),
+        }),
+        error: "",
+      };
+    } catch (error) {
+      return { value: null, error: error.message };
+    }
+  }, [result, costAssumptions.hourly, costAssumptions.action]);
   const metrics = engine.metrics(state);
   const risk = engine.riskFor(
     state.lines.find((line) => line.id === "assembly"),
@@ -276,6 +299,12 @@ export default function ReportsPage({
               </tbody>
             </table>
           </div>
+          <CostEvaluation
+            assumptions={costAssumptions}
+            onChange={onCostChange}
+            result={financial.value}
+            error={financial.error}
+          />
           <p className="chart-note" id={helpId}>
             Независимый синтетический эксперимент. Ползунок не меняет текущую
             смену. Эффект на Allur не измерялся; дробный выпуск — расчётный
@@ -283,7 +312,12 @@ export default function ReportsPage({
           </p>
           <button
             className="button button-secondary"
-            onClick={() => downloadJSON("scenario-comparison.json", result)}
+            onClick={() =>
+              downloadJSON("scenario-comparison.json", {
+                ...result,
+                economicEvaluation: financial.value,
+              })
+            }
           >
             Скачать сравнение JSON
           </button>
