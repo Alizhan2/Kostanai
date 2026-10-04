@@ -1,0 +1,22 @@
+{
+  "source": "Organizer submission instructions supplied by the user",
+  "receivedClientDate": "2026-10-04",
+  "recipientEmail": "smart_center@ksu.edu.kz",
+  "delivery": "One email containing all materials",
+  "requiredEmailFields": [
+    "institution",
+    "caseNumber",
+    "captainFullName",
+    "memberFullNames"
+  ],
+  "presentationFormat": "PDF only",
+  "codeRepositoryUrlRequired": true,
+  "videoUrl": "Required only if explicitly required by the selected case",
+  "caseNumber": 2,
+  "videoExplicitlyRequiredInCase2": false,
+  "caseEvidence": "docs/compliance/sources/case-kk.txt",
+  "rulesEvidence": "docs/compliance/sources/rules-ru.txt",
+  "deadlineFromEarlierAnnouncement": "2026-10-08 23:59",
+  "deadlineTimezoneConfirmed": false,
+  "submissionSent": false
+}

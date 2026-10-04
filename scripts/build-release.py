@@ -1,5 +1,7 @@
 """Assemble the local hackathon submission without publishing or sending it."""
 from pathlib import Path
+from email.message import EmailMessage
+from email.policy import SMTP
 import hashlib
 import json
 import shutil
@@ -37,12 +39,8 @@ verification_matches = bool(fingerprints) and verification.get("version") == ver
 def field(key, fallback):
     return team.get(key, "").strip() or fallback
 
-email = f"""# Хат жобасы — Qostanai AI Industry Hackathon 2026
-
-Кімге: {field('recipientEmail', '[ұйымдастырушының мекенжайы]')}
-Тақырып: Qostanai AI Industry Hackathon 2026 — №2 кейс — {field('teamName', '[команда атауы]')}
-
-Сәлеметсіздер ме!
+subject = f"Qostanai AI Industry Hackathon 2026 — №2 кейс — {field('teamName', '[команда атауы]')}"
+body = f"""Сәлеметсіздер ме!
 
 Allur компаниясының №2 «Автомобиль зауытының цифрлық егізі» кейсі бойынша Allur Plant Twin жобасын ұсынамыз.
 
@@ -53,12 +51,14 @@ Allur компаниясының №2 «Автомобиль зауытының 
 Команда капитаны: {field('captain', '[капитанның аты-жөні]')}
 Қатысушылар: {field('member', '[қатысушылардың аты-жөні]')}
 Репозиторий: {field('repositoryUrl', '[код сілтемесі]')}
-Презентация: {field('presentationUrl', 'PDF тіркелген — Allur-Plant-Twin-presentation.pdf')}
+Презентация: Allur-Plant-Twin-presentation.pdf файлы тіркелген (PDF).
+PDF сілтемесі: {field('presentationUrl', '[PDF сілтемесі]')}
 """
 if team.get("demoUrl", "").strip():
-    email += f"Демонстрация: {team['demoUrl'].strip()}\n"
-email += "\nЖоба өндірістік ағындарды, жинақтау желісінің тоқтау қаупін және оператор әрекетін көрсетеді. Зауыт симуляциясы мен қор моделі синтетикалық деректерді пайдаланады. Бөлек диагностикалық модель Scania APS ашық деректерінде үйретілген; оның нәтижелері Allur жабдығына қатысты емес.\n\nҚұрметпен,\n" + field("captain", "[капитанның аты-жөні]") + "\n"
-email += "\n---\nМәртебе: хат жобасы, жіберілген жоқ. Жіберер алдында алушы мекенжайын енгізіп, код пен PDF сілтемелерін тексеріңіз.\n"
+    body += f"Демонстрация: {team['demoUrl'].strip()}\n"
+body += "\nЖоба өндірістік ағындарды, жинақтау желісінің тоқтау қаупін және оператор әрекетін көрсетеді. Зауыт симуляциясы мен қор моделі синтетикалық деректерді пайдаланады. Бөлек диагностикалық модель Scania APS ашық деректерінде үйретілген; оның нәтижелері Allur жабдығына қатысты емес.\n\nҚұрметпен,\n" + field("captain", "[капитанның аты-жөні]") + "\n"
+email = f"# Хат жобасы — Qostanai AI Industry Hackathon 2026\n\nКімге: {field('recipientEmail', '[ұйымдастырушының мекенжайы]')}\nТақырып: {subject}\nТіркеме: Allur-Plant-Twin-presentation.pdf (тек PDF)\n\n" + body
+email += "\n---\nМәртебе: хат жобасы, жіберілген жоқ. Барлық материалды бір хатпен жіберіңіз. PDF тіркемесін және код сілтемесін тексеріңіз.\n"
 (ROOT / "docs/submission/submission-email.md").write_text(email, encoding="utf-8")
 dist = ROOT / "dist"
 dist.mkdir(exist_ok=True)
@@ -67,6 +67,16 @@ powerpoint = ROOT / "docs/presentation-kk.pptx"
 if powerpoint.is_file():
     shutil.copyfile(powerpoint, dist / "Allur-Plant-Twin-presentation-kk.pptx")
 shutil.copyfile(ROOT / "docs/submission/submission-email.md", dist / "submission-email.md")
+message = EmailMessage(policy=SMTP)
+if team.get("recipientEmail", "").strip():
+    message["To"] = team["recipientEmail"].strip()
+message["Subject"] = subject
+message["X-Unsent"] = "1"
+message.set_content(body, charset="utf-8")
+message.add_attachment(presentation.read_bytes(), maintype="application", subtype="pdf",
+                       filename="Allur-Plant-Twin-presentation.pdf")
+(dist / "submission.eml").write_bytes(message.as_bytes())
+(dist / "submission-body.txt").write_text(body, encoding="utf-8")
 excluded = {".git", ".venv", "node_modules", "__pycache__", "dist", ".web-static", ".test-results"}
 files = []
 archive = dist / "Allur-Plant-Twin.zip"
@@ -87,6 +97,10 @@ with ZipFile(archive, "w", ZIP_DEFLATED) as bundle:
 status = {"project": "Allur Plant Twin", "case": 2,
           "version": version,
           "readyToSubmit": not missing, "missing": missing,
+          "readinessScope": "Required team/contact fields and PDF present; registration, eligibility and receipt are not checked",
+          "submitted": False,
+          "emailDraft": "submission.eml",
+          "emailAttachments": ["Allur-Plant-Twin-presentation.pdf"],
           "repositoryPublishedByTeam": team["repositoryPublished"],
           "repositoryAvailabilityChecked": False,
           "verificationMatchesCurrentSources": verification_matches,

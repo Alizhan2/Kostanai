@@ -1,0 +1,13 @@
+{
+  "checkedClientDate": "2026-10-04",
+  "recipient": "smart_center@ksu.edu.kz",
+  "requiredEmailFieldsPassed": true,
+  "singleEmail": true,
+  "onlyPdfAttachment": true,
+  "attachmentSha256": "a427466b114b961bd62a9bfe312172d3e964238c470569d93d38824b47ffa189",
+  "subject": "Qostanai AI Industry Hackathon 2026 — №2 кейс — Zhubanov team",
+  "draftOnly": true,
+  "sent": false,
+  "videoExplicitlyRequiredInCase2": false,
+  "applicationTestsRerun": false
+}
