@@ -2,20 +2,35 @@
   "repositoryUrl": "https://github.com/Alizhan2/Kostanai",
   "branch": "main",
   "version": "0.9.0",
-  "verifiedSourceCommit": "b70307619a956dc7d83563d35a630536bf32b182",
-  "checkedAtUTC": "2026-10-04T14:49:26.748032+00:00",
+  "verifiedSourceCommit": "36d7b0c0e9e81829cb786147f33b17574be0bee9",
+  "checkedAtUTC": "2026-10-04T15:18:54.180979+00:00",
   "checkedClientDate": "2026-10-04",
   "publicAnonymousReadsPassed": true,
   "checks": [
     {
       "path": "README.md",
       "status": 200,
-      "sha256": "3ea734d5077d8a91e7b520e2ce4d468f92f6aeef2e3330e4d177cd614d9b9ca6"
+      "sha256": "60470c6289fa7f602b52f487735953289524bcd1a352f1d4172a58c3963109ac"
     },
     {
-      "path": "package.json",
+      "path": "test-project.py",
       "status": 200,
-      "sha256": "50db72d5f62beb729a79144c37425597e3090559e5591ee52a28d83b6381afae"
+      "sha256": "ace5eb031847d725b1f0107b8f51ddb3af55b873a306b18dc2301f2223470b86"
+    },
+    {
+      "path": "docs/submission/team.json",
+      "status": 200,
+      "sha256": "6712fd828bc6dfecc5a18dff6ff85d571201e87a43938eaaea8a6c4e71337369"
+    },
+    {
+      "path": "docs/submission/submission-email.md",
+      "status": 200,
+      "sha256": "6e337a51c9c4f2afc5055102a24acbf72387f19acd1b2584ebabd43b81caefd3"
+    },
+    {
+      "path": "docs/submission/delivery-requirements.json",
+      "status": 200,
+      "sha256": "d55e6085f9f6421c3cdba38ae7e49c9107c9742de0dd4ccdd964c25ba8d93e95"
     },
     {
       "path": "docs/presentation.pdf",
@@ -23,34 +38,9 @@
       "sha256": "a427466b114b961bd62a9bfe312172d3e964238c470569d93d38824b47ffa189"
     },
     {
-      "path": "docs/presentation-kk.pptx",
-      "status": 200,
-      "sha256": "357089c63a66e55194e093e25d62f427e8f321170fddd2bca1991f76e3b54ace"
-    },
-    {
-      "path": "docs/presentation-notes-kk.md",
-      "status": 200,
-      "sha256": "ba59b8635b0b68435215ab755646e0b0f62cb033f72483b3fbe2e587861691e2"
-    },
-    {
-      "path": "docs/submission/team.json",
-      "status": 200,
-      "sha256": "5ff175bd98d47a2e6dec6c95b8b8d5a81bd1887734cb61e546c44f5782fe34a1"
-    },
-    {
-      "path": "docs/submission/canva.json",
-      "status": 200,
-      "sha256": "d8203fb2dfa88094524170ff074d09489ffb9408d24ee605b437c4bb24e1a262"
-    },
-    {
       "path": "site/index.html",
       "status": 200,
       "sha256": "b988632561e94c9d5de812b92d2de919c04c46ff7ed89173f3c084e4a6b2c169"
-    },
-    {
-      "path": "site/docs/presentation.pdf",
-      "status": 200,
-      "sha256": "a427466b114b961bd62a9bfe312172d3e964238c470569d93d38824b47ffa189"
     }
   ],
   "presentation": {
@@ -61,8 +51,10 @@
   },
   "limitations": [
     "Team identity supplied by user; registration and eligibility not independently confirmed",
-    "Recipient email unknown",
     "Public repository is not a deployed application",
-    "Submission has not been sent"
-  ]
+    "Submission email has not been sent"
+  ],
+  "submissionRecipient": "smart_center@ksu.edu.kz",
+  "emailDraftPrepared": true,
+  "submissionSent": false
 }
